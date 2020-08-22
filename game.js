@@ -46,14 +46,14 @@ game = function(){
   }
 
   //scrolling map logic tied to frame refresh
-  if (map_updateCounter%40 === 0){
+/*   if (map_updateCounter%40 === 0){
     maps[0].shift()
   }
   for (i in maps[0][maps.length])
   {
     setTile = Math.floor((Math.random() * 5)+0)
     lastRow+=String(setTile)
-  }
+  } */
 /*   maps[0].push(lastRow) */
   lastRow=""
 
@@ -61,7 +61,7 @@ game = function(){
   ctx.save();
   ctx.translate(hero.x, hero.y);
   ctx.rotate(hero.angle);
-  ctx.drawImage(hero_sprite, -16, -16, tile_w, tile_h);
+  ctx.drawImage(hero_sprite, 0, -16, tile_w, tile_h);
   ctx.restore();
   
   // Debug
