@@ -75,14 +75,6 @@ game = function(){
     ctx.fillRect(hero.x + hero.L4[0] + j * hero.right[0], hero.y + hero.L4[1] + j * hero.right[1],2,2);
   }*/
   
-  if(hero.x > tile_w * 24){
-    rotate_hero(45);
-  }
-  
-  if(hero.x < tile_w * 1){
-    rotate_hero(-45);
-  }
-  
   // Next frame
   requestAnimationFrame(game);
 };
