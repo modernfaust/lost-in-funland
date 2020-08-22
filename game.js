@@ -7,6 +7,9 @@ var time = 0;
 var frametime = 0;
 var normal_frametime = 16;
 var frametime_coef = 0;
+var map_updateCounter = 0;
+var setTile;
+var lastRow = ""
 
 game = function(){
   
@@ -16,7 +19,8 @@ game = function(){
   prev_time = time;
   frametime_coef = frametime / normal_frametime;
   l3.value = frametime_coef;
-
+  map_updateCounter++
+  console.log(map_updateCounter)
   //zzz+=1;
   //rotate_hero(zzz);
   
@@ -40,7 +44,19 @@ game = function(){
       }
     }
   }
-  
+
+  //scrolling map logic tied to frame refresh
+  if (map_updateCounter%40 === 0){
+    maps[0].shift()
+  }
+  for (i in maps[0][maps.length])
+  {
+    setTile = Math.floor((Math.random() * 5)+0)
+    lastRow+=String(setTile)
+  }
+/*   maps[0].push(lastRow) */
+  lastRow=""
+
   // Draw the hero
   ctx.save();
   ctx.translate(hero.x, hero.y);
