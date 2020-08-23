@@ -7,15 +7,56 @@ img.preload { position: absolute; opacity: 0; left: -9999px; }
 canvas { width: 177.7vh; height: 99vh; background: #eee; cursor: crosshair; }
 canvas.portrait { width: 99vw; height: 56.2vw; position: absolute; top: 50vh; left: 0; margin: -28.1vw 0 0 0.5vw; }
 button { width: 100px; height: 40px }
-input { font-size: 10px; width: 200px }
+input { height: 30px; width: 200px; margin: 10px; text-align: center;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
 </style>
-<title>platform engine</title>
+<title>Lost in Funland</title>
 <body id=body>
   <canvas id=canvas width=800 height=450></canvas>
   <button onclick="location=location">reset</button>
   <input id=l1 hidden>
   <input id=l2 hidden>
-  <input id=l3>
+  <input id=l3 hidden>
+
+  </div>
+  <h1 style="color: rgb(250, 0, 0); margin: 2px;"> Score </h1>
+  <input id=score>
+
+
+  <!-- Modal -->
+  <div id="startModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>Some text in the Modal..</p>
+    </div>
+
+  </div>
+
   <img class=preload src="img/hero.png" id=hero_sprite>
   <img class=preload src="img/wall_unportalable.png" id=wall_unportalable_sprite>
   <img class=preload src="img/wall_portalable.png" id=wall_portalable_sprite>
