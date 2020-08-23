@@ -10,6 +10,7 @@ var frametime_coef = 0;
 var map_updateCounter = 0;
 var setTile;
 var lastRow = ""
+var gameScore = 0;
 
 game = function(){
   
@@ -21,6 +22,7 @@ game = function(){
   l3.value = frametime_coef;
   map_updateCounter++
   console.log(map_updateCounter)
+  score.value = gameScore++;
   //zzz+=1;
   //rotate_hero(zzz);
   
