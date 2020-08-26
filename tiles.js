@@ -1,5 +1,11 @@
 /* Tiles */
 
+//rewrite this all
+// tile object template:
+// type
+// sprite
+// 
+
 // Size
 tile_w = 32;
 tile_h = 32;
