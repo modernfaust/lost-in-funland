@@ -11,6 +11,7 @@ var map_updateCounter = 0;
 var setTile;
 var lastRow = ""
 var gameScore = 0;
+var bgimg = document.getElementById("background");
 
 game = function(){
   
@@ -30,13 +31,16 @@ game = function(){
   move_hero();
   
   // Draw the scene
+
+  
   canvas.width = canvas.width;
   
-  ctx.fillStyle = "#abc";
-  ctx.fillRect(0,0,40,600);
+  var pat = ctx.createPattern(bgimg, "repeat");
+  ctx.fillStyle = pat;
+  ctx.fillRect(0,0,400,600);
   
   ctx.fillStyle = "#aca";
-  ctx.fillRect(760,0,800,600);
+  ctx.fillRect(0,0,640,800);
   
   ctx.fillStyle = "black";
   for(i in maps[0]){
@@ -46,6 +50,7 @@ game = function(){
       }
     }
   }
+
 
   //scrolling map logic tied to frame refresh
 /*   if (map_updateCounter%40 === 0){
