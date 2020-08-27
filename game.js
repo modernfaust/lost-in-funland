@@ -72,14 +72,15 @@ if (startScrolling) {
   if (map_updateCounter%40 === 0) {
     maps[0].shift()
   }
-/*   for (i = 1; i < maps[0][maps.length];i++) {
+
+  for (i = 1; i < maps[0][maps.length].length;i++) {
     console.log("iterator at: ",i)
     aboveTile = maps[0][maps.length][i]
     prevTile = generatedRow[i - 1]
     currentTile=generateTile(aboveTile, prevTile)
     generatedRow+=currentTile
     currentTile=""
-  }  */
+  } 
   console.log(maps[0].length)
   maps[0].push(generatedRow)
   generatedRow="1"
