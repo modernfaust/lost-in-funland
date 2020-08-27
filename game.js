@@ -8,10 +8,14 @@ var frametime = 0;
 var normal_frametime = 16;
 var frametime_coef = 0;
 var map_updateCounter = 0;
-var setTile;
-var lastRow = ""
+var generatedRow = "1"
 var gameScore = 0;
 var bgimg = document.getElementById("background");
+var startScrolling = false
+var aboveTile;
+var prevTile;
+var currentTile=""
+
 
 game = function(){
   
@@ -22,7 +26,6 @@ game = function(){
   frametime_coef = frametime / normal_frametime;
   l3.value = frametime_coef;
   map_updateCounter++
-  console.log(map_updateCounter)
   score.value = gameScore++;
   //zzz+=1;
   //rotate_hero(zzz);
@@ -61,16 +64,25 @@ game = function(){
   ctx.restore();
   
 if (hero.y >= 400) {
-    //scrolling map logic tied to frame refresh
-    if (map_updateCounter%40 === 0){
-      maps[0].shift()
-    }
-    for (i in maps[0][maps.length])
-    {
-      setTile = Math.floor((Math.random() * 5)+0)
-      lastRow+=String(setTile)
-    } 
-  maps[0].push(lastRow)
+  startScrolling = true
+}
+
+if (startScrolling) {
+  //scrolling map logic tied to frame refresh
+  if (map_updateCounter%40 === 0) {
+    maps[0].shift()
+  }
+/*   for (i = 1; i < maps[0][maps.length];i++) {
+    console.log("iterator at: ",i)
+    aboveTile = maps[0][maps.length][i]
+    prevTile = generatedRow[i - 1]
+    currentTile=generateTile(aboveTile, prevTile)
+    generatedRow+=currentTile
+    currentTile=""
+  }  */
+  console.log(maps[0].length)
+  maps[0].push(generatedRow)
+  generatedRow="1"
 }
 
 

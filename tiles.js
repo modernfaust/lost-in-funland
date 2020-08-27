@@ -23,11 +23,11 @@ tiles = {
     solid: 0,
     //probabilities out of 10
     nextTiles : {
-      nextSolid: 3,
-      nextSpike: 2,
-      nextRamp: 1,
-      nextPower: 2,
-      nextVoid: 2
+      "0": 2,
+      "1": 3,
+      "2": 1,
+      "3": 2,
+      "4": 2
     }
   },
   
@@ -36,11 +36,11 @@ tiles = {
     sprite: wall_unportalable_sprite,
     solid: 1,
     nextTiles : {
-      nextSolid: 4,
-      nextSpike: 2,
-      nextRamp: 1,
-      nextPower: 2,
-      nextVoid: 1
+      "0": 2,
+      "1": 4,
+      "2": 1,
+      "3": 1,
+      "4": 2
     }
   },
   
@@ -50,6 +50,13 @@ tiles = {
     solid: 2,
     solidity: function(x,y){
       return y > tile_w - x;
+    },
+    nextTiles : {
+      "0": 2,
+      "1": 4,
+      "2": 1,
+      "3": 1,
+      "4": 2
     }
   },
   
@@ -59,6 +66,13 @@ tiles = {
     solid: 2,
     solidity: function(x,y){
       return y > x;
+    },
+    nextTiles : {
+      "0": 2,
+      "1": 4,
+      "2": 1,
+      "3": 1,
+      "4": 2
     }
   },
   
@@ -68,6 +82,13 @@ tiles = {
     solid: 2,
     solidity: function(x,y){
       return y < x;
+    },
+    nextTiles : {
+      "0": 2,
+      "1": 4,
+      "2": 1,
+      "3": 1,
+      "4": 2
     }
   },
   
@@ -116,12 +137,10 @@ is_solid = function(x,y){
 
 //generate appropriate tile in map
 generateTile = function(aboveTile, prevTile) {
-  var tileRoll = for(let i in tiles[prevTile].nextTiles) {
-    
+  var tileLine = ""
+  //build string of tiles to represent random draw
+  for (var t in tiles[prevTile].nextTiles) {
+    tileLine += t.repeat(tiles[prevTile].nextTiles[t])
   }
-  if (aboveTile === 0) {
-    if (aboveTile.opening) {
-      return ("0")
-    }
-  } 
+  return tileLine[Math.floor(Math.random() * tileLine.length)]
 }

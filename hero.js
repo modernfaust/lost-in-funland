@@ -118,7 +118,7 @@ var hero = {
   // Speeds and accelerations:
   // Constant
   max_walk_speed: 3,
-  walk_acceleration: 0.3,
+  walk_acceleration: 1,
   walk_idle_deceleration: -1,
   jump_speed: -14,
   gravity: 1,
