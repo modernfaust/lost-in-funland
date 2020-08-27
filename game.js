@@ -51,17 +51,6 @@ game = function(){
     }
   }
 
-
-  //scrolling map logic tied to frame refresh
-/*   if (map_updateCounter%40 === 0){
-    maps[0].shift()
-  }
-  for (i in maps[0][maps.length])
-  {
-    setTile = Math.floor((Math.random() * 5)+0)
-    lastRow+=String(setTile)
-  } */
-/*   maps[0].push(lastRow) */
   lastRow=""
 
   // Draw the hero
@@ -71,6 +60,20 @@ game = function(){
   ctx.drawImage(hero_sprite, 0, -16, tile_w, tile_h);
   ctx.restore();
   
+if (hero.y >= 400) {
+    //scrolling map logic tied to frame refresh
+    if (map_updateCounter%40 === 0){
+      maps[0].shift()
+    }
+    for (i in maps[0][maps.length])
+    {
+      setTile = Math.floor((Math.random() * 5)+0)
+      lastRow+=String(setTile)
+    } 
+  maps[0].push(lastRow)
+}
+
+
   // Debug
   /*for(var i in vectors){
     ctx.fillStyle = "red";
@@ -85,6 +88,7 @@ game = function(){
   // Next frame
   requestAnimationFrame(game);
 };
+
 
 onload = function(){
   zzz = 0;//Math.floor(Math.random()*8) * 45;

@@ -20,13 +20,28 @@ tiles = {
   // 0: void
   "0": {
     sprite: void_sprite,
-    solid: 0
+    solid: 0,
+    //probabilities out of 10
+    nextTiles : {
+      nextSolid: 3,
+      nextSpike: 2,
+      nextRamp: 1,
+      nextPower: 2,
+      nextVoid: 2
+    }
   },
   
   // 1: wall "unportalable"
   "1": {
     sprite: wall_unportalable_sprite,
-    solid: 1
+    solid: 1,
+    nextTiles : {
+      nextSolid: 4,
+      nextSpike: 2,
+      nextRamp: 1,
+      nextPower: 2,
+      nextVoid: 1
+    }
   },
   
   // 2: slope 45deg right
@@ -97,4 +112,16 @@ is_solid = function(x,y){
   var pixel_x = x - tile_x * tile_w;
   var pixel_y = y - tile_y * tile_h;
   return tiles[maps[current_map][tile_y][tile_x]].solidity(pixel_x, pixel_y);
+}
+
+//generate appropriate tile in map
+generateTile = function(aboveTile, prevTile) {
+  var tileRoll = for(let i in tiles[prevTile].nextTiles) {
+    
+  }
+  if (aboveTile === 0) {
+    if (aboveTile.opening) {
+      return ("0")
+    }
+  } 
 }
