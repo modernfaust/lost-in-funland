@@ -29,20 +29,23 @@ game = function(){
   score.value = gameScore++;
   //zzz+=1;
   //rotate_hero(zzz);
+
+  //center camera around hero
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const camX = -hero.x + canvas.width / 2;
+  const camY = -hero.y + canvas.height / 2;
+  ctx.translate(camX, camY);
   
   // Make the hero move, walk, jump, fall...
   move_hero();
-  
+
   // Draw the scene
-  
-  canvas.width = canvas.width;
-  
+  //canvas.width = canvas.width;
   var pat = ctx.createPattern(bgimg, "repeat");
   ctx.fillStyle = pat;
-  ctx.fillRect(0,0,400,600);
+  ctx.fillRect(0,0,5000,5000); 
   
-  ctx.fillStyle = "#aca";
-  ctx.fillRect(0,0,640,800);
   
   ctx.fillStyle = "black";
   for(i in maps[0]){
@@ -57,46 +60,31 @@ game = function(){
     startScrolling = true
   }
 
-
-
   // Draw the hero
   ctx.save();
   ctx.translate(hero.x, hero.y);
   ctx.rotate(hero.angle);
-  ctx.drawImage(hero_sprite, 0, -16, tile_w, tile_h);
+  ctx.drawImage(hero_sprite, -12, -16, tile_w, tile_h);
   ctx.restore();
-
-  // Assign the viewport to follow a target for this frame
-  viewport.x = -hero.x + canvas.width / 2;
-  viewport.y = -hero.y + canvas.height / 2;
-
-  // Draw each entity, including the target, relative to the viewport
-  ctx.fillRect(
-    entity.x + viewport.x, 
-    entity.y + viewport.y,
-    entity.size,
-    entity.size
-  );
-
-
-/* if (startScrolling) {
-  //scrolling map logic tied to frame refresh
-  for (i = 1; i < maps[0][maps.length].length;i++) {
-    console.log("iterator at: ",i)
-    aboveTile = maps[0][maps.length][i]
-    prevTile = generatedRow[i - 1]
-    currentTile=generateTile(aboveTile, prevTile)
-    generatedRow+=currentTile
-    currentTile=""
+  
+if (startScrolling) {
+  if (map_updateCounter%30 === 0) {
+    //scrolling map logic tied to frame refresh
+    for (i = 1; i < maps[0][maps.length].length;i++) {
+      console.log("iterator at: ",i)
+      aboveTile = maps[0][maps.length][i]
+      prevTile = generatedRow[i - 1]
+      currentTile=generateTile(aboveTile, prevTile)
+      generatedRow+=currentTile
+      currentTile=""
+    }
   }
 
   console.log(maps[0].length)
   maps[0].push(generatedRow)
   generatedRow="1"
-  if (map_updateCounter%40 === 0) {
-    maps[0].shift()
-  }
-} */
+
+}
 
 
   // Debug
