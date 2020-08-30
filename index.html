@@ -8,6 +8,15 @@ canvas { width: 60vh; height: 80vh;  background-color: #cccccc; cursor: crosshai
 button { width: 100px; height: 40px }
 input { height: 30px; width: 200px; margin: 10px; text-align: center;}
 
+/* Phone Size Support */
+
+@media (min-width: 1000px) and (min-height: 700px) {
+    .canvas {
+        width: 450px;
+        height: 300px;
+    }
+}
+
 .MenuModal {
   display: none; 
   position: fixed; 
@@ -45,6 +54,8 @@ input { height: 30px; width: 200px; margin: 10px; text-align: center;}
   text-decoration: none;
   cursor: pointer;
 }
+
+
 
 
 </style>
