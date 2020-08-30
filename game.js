@@ -15,6 +15,8 @@ var startScrolling = false
 var aboveTile;
 var prevTile;
 var currentTile=""
+var finalScore= "0"
+
 //var upTranslate=0.1
 
 game = function(){
@@ -29,6 +31,10 @@ game = function(){
   score.value = gameScore++;
   //zzz+=1;
   //rotate_hero(zzz);
+
+
+  //Temp Final Score
+  finalScore="100";
 
   //center camera around hero
   ctx.setTransform(1, 0, 0, 1, 0, 0);
