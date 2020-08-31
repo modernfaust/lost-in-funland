@@ -121,15 +121,16 @@ var hero = {
   walk_acceleration: 1,
   walk_idle_deceleration: -1,
   jump_speed: -14,
-  gravity: 1,
+  gravity: 0.5,
   
   // Variable
   walk_speed: 0,
   fall_speed: 0,
-  max_fall_speed: 6,
+  max_fall_speed: 10,
   
   // State
-  freefall: true // freefall
+  freefall: true,
+  loadLevels: false
 };
 
 // Functions
@@ -303,6 +304,7 @@ var move_hero = function(){
   
   if(hero.fall_speed > hero.max_fall_speed){
     hero.fall_speed = hero.max_fall_speed;
+    hero.loadLevels=true;
   }
   
   l1.value = hero.fall_speed;
@@ -320,6 +322,7 @@ var move_hero = function(){
           hero.x -= hero.bottom[0];
           hero.y -= hero.bottom[1];
           hero.freefall = false;
+          hero.loadLevels = false;
           break mv;
         }
       }
