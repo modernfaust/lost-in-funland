@@ -68,22 +68,19 @@ game = function(){
   ctx.restore();
   
 if (startScrolling) {
-  if (map_updateCounter%30 === 0) {
-    //scrolling map logic tied to frame refresh
+  //scrolling map tied to frame refresh
+  if (hero.loadLevels) {
+    //generate level ONLY when hero is at max fall velocity
     for (i = 1; i < maps[0][maps.length].length;i++) {
-      console.log("iterator at: ",i)
       aboveTile = maps[0][maps.length][i]
       prevTile = generatedRow[i - 1]
       currentTile=generateTile(aboveTile, prevTile)
       generatedRow+=currentTile
       currentTile=""
     }
-  }
-
-  console.log(maps[0].length)
   maps[0].push(generatedRow)
   generatedRow="1"
-
+  }
 }
 
 
