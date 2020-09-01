@@ -122,6 +122,7 @@ function clamp(value, min, max){
   return value;
 }
 
+
 onload = function(){
   zzz = 0;//Math.floor(Math.random()*8) * 45;
   rotate_hero(zzz);
