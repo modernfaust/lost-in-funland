@@ -11,12 +11,13 @@ var map_updateCounter = 0;
 var generatedRow = "1"
 var gameScore = 0;
 var bgimg = document.getElementById("background");
-var startScrolling = false
+var isGenerating = false
 var aboveTile;
 var prevTile;
 var currentTile=""
-var finalScore= "0"
-
+var maxFloor=50
+var latestFloor=0
+var inTransition=false
 //var upTranslate=0.1
 
 game = function(){
@@ -31,10 +32,6 @@ game = function(){
   score.value = gameScore++;
   //zzz+=1;
   //rotate_hero(zzz);
-
-
-  //Temp Final Score
-  finalScore="100";
 
   //center camera around hero
   ctx.setTransform(1, 0, 0, 1, 0, 0);
@@ -54,16 +51,19 @@ game = function(){
   
   
   ctx.fillStyle = "black";
-  for(i in maps[0]){
-    for(j in maps[0][i]){
-      if(maps[0][i][j] != "0"){
-        ctx.drawImage(tiles[maps[0][i][j]].sprite, j * tile_w, i * tile_h, tile_w, tile_h);
+
+    for(i in maps[0]){
+      for(j in maps[0][i]){
+        if(maps[0][i][j] != "0"){
+          ctx.drawImage(tiles[maps[0][i][j]].sprite, j * tile_w, i * tile_h, tile_w, tile_h);
+        }
       }
     }
-  }
+  
 
   if (hero.y >= 400) {
-    startScrolling = true
+    inTransition = true
+    isGenerating = true
   }
 
   // Draw the hero
@@ -73,22 +73,31 @@ game = function(){
   ctx.drawImage(hero_sprite, -12, -16, tile_w, tile_h);
   ctx.restore();
   
-if (startScrolling) {
+if (isGenerating) {
   //scrolling map tied to frame refresh
   if (hero.loadLevels) {
     //generate level ONLY when hero is at max fall velocity
-    for (i = 1; i < maps[0][maps.length].length;i++) {
-      aboveTile = maps[0][maps.length][i]
-      prevTile = generatedRow[i - 1]
-      currentTile=generateTile(aboveTile, prevTile)
-      generatedRow+=currentTile
-      currentTile=""
+    if (latestFloor < maxFloor) {
+      //capping floor generation to maintain performance
+      for (i = 1; i < maps[0][maps.length].length-1;i++) {
+        aboveTile = maps[0][maps.length][i]
+        prevTile = generatedRow[i - 1]
+        currentTile=generateTile(aboveTile, prevTile)
+        generatedRow+=currentTile
+        currentTile=""
+      }
+      latestFloor+=1
     }
-  maps[0].push(generatedRow)
-  generatedRow="1"
+    else if (latestFloor === maxFloor) {
+      //create basic platform for next level
+      generatedRow = "2".repeat(Math.floor(maps[0][maps.length].length/2)) + "0".repeat(Math.floor(maps[0][maps.length].length/2)-1)
+      latestFloor=0
+      isGenerating=false
+    }
+    maps[0].push(generatedRow+"1")
+    generatedRow="1"
   }
 }
-
 
   // Debug
   /*for(var i in vectors){

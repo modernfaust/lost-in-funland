@@ -137,10 +137,10 @@ is_solid = function(x,y){
 
 //generate appropriate tile in map
 generateTile = function(aboveTile, prevTile) {
-  var tileLine = ""
+  var randomTiles = ""
   //build string of tiles to represent random draw
   for (var t in tiles[prevTile].nextTiles) {
-    tileLine += t.repeat(tiles[prevTile].nextTiles[t])
+    randomTiles += t.repeat(tiles[prevTile].nextTiles[t])
   }
-  return tileLine[Math.floor(Math.random() * tileLine.length)]
+  return randomTiles[Math.floor(Math.random() * randomTiles.length)]
 }
