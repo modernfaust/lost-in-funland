@@ -11,13 +11,14 @@ var map_updateCounter = 0;
 var generatedRow = "1"
 var gameScore = 0;
 var bgimg = document.getElementById("background");
-var isGenerating = false
 var aboveTile;
 var prevTile;
 var currentTile=""
 var maxFloor=50
 var latestFloor=0
 var inTransition=false
+var generateLevel=false
+var currentMap=maps[0]
 //var upTranslate=0.1
 
 game = function(){
@@ -49,21 +50,20 @@ game = function(){
   ctx.fillStyle = pat;
   ctx.fillRect(0,0,5000,5000); 
   
-  
   ctx.fillStyle = "black";
-
-    for(i in maps[0]){
-      for(j in maps[0][i]){
-        if(maps[0][i][j] != "0"){
-          ctx.drawImage(tiles[maps[0][i][j]].sprite, j * tile_w, i * tile_h, tile_w, tile_h);
+  if (!inTransition) {
+    for(i in currentMap){
+      for(j in currentMap[i]){
+        if(currentMap[i][j] != "0"){
+          ctx.drawImage(tiles[currentMap[i][j]].sprite, j * tile_w, i * tile_h, tile_w, tile_h);
         }
       }
     }
-  
+  }
 
-  if (hero.y >= 400) {
-    inTransition = true
-    isGenerating = true
+  if (hero.y >= -50) {
+    generateLevel = true
+    currentMap=maps[1]
   }
 
   // Draw the hero
@@ -72,31 +72,29 @@ game = function(){
   ctx.rotate(hero.angle);
   ctx.drawImage(hero_sprite, -12, -16, tile_w, tile_h);
   ctx.restore();
-  
-if (isGenerating) {
+
+if (generateLevel) {
   //scrolling map tied to frame refresh
-  if (hero.loadLevels) {
-    //generate level ONLY when hero is at max fall velocity
-    if (latestFloor < maxFloor) {
-      //capping floor generation to maintain performance
-      for (i = 1; i < maps[0][maps.length].length-1;i++) {
-        aboveTile = maps[0][maps.length][i]
-        prevTile = generatedRow[i - 1]
-        currentTile=generateTile(aboveTile, prevTile)
-        generatedRow+=currentTile
-        currentTile=""
-      }
-      latestFloor+=1
+  if (latestFloor < maxFloor) {
+    //capping floor generation to maintain performance
+    for (i = 1; i < currentMap[maps.length].length-1;i++) {
+      aboveTile = currentMap[maps.length][i]
+      prevTile = generatedRow[i - 1]
+      currentTile=generateTile(aboveTile, prevTile)
+      generatedRow+=currentTile
+      currentTile=""
     }
-    else if (latestFloor === maxFloor) {
-      //create basic platform for next level
-      generatedRow = "2".repeat(Math.floor(maps[0][maps.length].length/2)) + "0".repeat(Math.floor(maps[0][maps.length].length/2)-1)
-      latestFloor=0
-      isGenerating=false
-    }
-    maps[0].push(generatedRow+"1")
-    generatedRow="1"
+    latestFloor+=1
   }
+  else if (latestFloor === maxFloor) {
+    //create basic platform for next level
+    generatedRow = "2".repeat(Math.floor(currentMap[maps.length].length/2)) + "0".repeat(Math.floor(currentMap[maps.length].length/2)-1)
+    latestFloor=0
+    generateLevel=false
+  }
+  currentMap.push(generatedRow+"1")
+  currentMap.shift()
+  generatedRow="1"
 }
 
   // Debug
@@ -113,17 +111,6 @@ if (isGenerating) {
   // Next frame
   requestAnimationFrame(game);
 };
-
-/* function draw() {
-  ctx.setTransform(1,0,0,1,0,0);//reset the transform matrix as it is cumulative
-  ctx.clearRect(0, 0, canvas.width, canvas.height);//clear the viewport AFTER the matrix is reset
-
-  //Clamp the camera position to the world bounds while centering the camera around the player                                             
-  var camX = clamp(-player.x + canvas.width/2, yourWorld.minX, yourWorld.maxX - canvas.width);
-  var camY = clamp(-player.y + canvas.height/2, yourWorld.minY, yourWorld.maxY - canvas.height);
-
-  ctx.translate( camX, camY );    
-} */
 
 function clamp(value, min, max){
   if(value < min) return min;

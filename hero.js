@@ -93,8 +93,8 @@ vectors = {
 
 // Properties
 var hero = {
-  x: 200, // x position of C2
-  y: 199, // y position of C2
+  x: 50, // x position of C2
+  y: -50, // y position of C2
   
   angle: 0, // angle in radians (0: head on top)
   
@@ -129,8 +129,7 @@ var hero = {
   max_fall_speed: 10,
   
   // State
-  freefall: true,
-  loadLevels: false
+  freefall: true
 };
 
 // Functions
@@ -304,7 +303,6 @@ var move_hero = function(){
   
   if(hero.fall_speed > hero.max_fall_speed){
     hero.fall_speed = hero.max_fall_speed;
-    hero.loadLevels=true;
   }
   
   l1.value = hero.fall_speed;
@@ -322,7 +320,6 @@ var move_hero = function(){
           hero.x -= hero.bottom[0];
           hero.y -= hero.bottom[1];
           hero.freefall = false;
-          hero.loadLevels = false;
           break mv;
         }
       }
