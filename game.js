@@ -17,7 +17,6 @@ var currentTile=""
 var maxFloor=50
 var latestFloor=0
 var inTransition=false
-var generateLevel=false
 var currentMap=maps[0]
 //var upTranslate=0.1
 
@@ -73,29 +72,7 @@ game = function(){
   ctx.drawImage(hero_sprite, -12, -16, tile_w, tile_h);
   ctx.restore();
 
-if (generateLevel) {
-  //scrolling map tied to frame refresh
-  if (latestFloor < maxFloor) {
-    //capping floor generation to maintain performance
-    for (i = 1; i < currentMap[maps.length].length-1;i++) {
-      aboveTile = currentMap[maps.length][i]
-      prevTile = generatedRow[i - 1]
-      currentTile=generateTile(aboveTile, prevTile)
-      generatedRow+=currentTile
-      currentTile=""
-    }
-    latestFloor+=1
-  }
-  else if (latestFloor === maxFloor) {
-    //create basic platform for next level
-    generatedRow = "2".repeat(Math.floor(currentMap[maps.length].length/2)) + "0".repeat(Math.floor(currentMap[maps.length].length/2)-1)
-    latestFloor=0
-    generateLevel=false
-  }
-  currentMap.push(generatedRow+"1")
-  currentMap.shift()
-  generatedRow="1"
-}
+  //generate level functions HERE
 
   // Debug
   /*for(var i in vectors){
@@ -117,7 +94,6 @@ function clamp(value, min, max){
   else if(value > max) return max;
   return value;
 }
-
 
 onload = function(){
   zzz = 0;//Math.floor(Math.random()*8) * 45;

@@ -135,6 +135,33 @@ is_solid = function(x,y){
   return tiles[maps[current_map][tile_y][tile_x]].solidity(pixel_x, pixel_y);
 }
 
+generateLevel = function(){
+  var currentTile;
+  var generatedRow = "1"
+  var level=["2".repeat(Math.floor(currentMap[maps.length].length/2)) + "0".repeat(Math.floor(currentMap[maps.length].length/2)-1) + "1"]
+
+  for (floors = 1; floors < 500; floors++){
+    for (i = 1; i < maps[0][maps.length].length-1;i++) {
+      aboveTile = maps[0][maps.length][i]
+      prevTile = generatedRow[i - 1]
+      currentTile=generateTile(aboveTile, prevTile)
+      generatedRow+=currentTile
+      currentTile=""
+    }
+    level.push(generatedRow+"1")
+    generatedRow="1"
+  } 
+  return (generateTransition() + level + generateTransition())
+}
+
+generateTransition = function(){
+  var transitionLevels=[]
+  for (floors = 1; floors < 100; floors++){
+    transitionLevels.push("1"+"0".repeat(Math.floor(currentMap[maps.length].length/2))+"1")
+  }
+  return (transitionLevels)
+}
+
 //generate appropriate tile in map
 generateTile = function(aboveTile, prevTile) {
   var randomTiles = ""
