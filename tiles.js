@@ -93,7 +93,7 @@ tiles = {
   },
   
   // 5: slope 45deg right
-  "5": {
+  ",": {
     sprite: slope_minus_45deg_left,
     solid: 2,
     solidity: function(x,y){
@@ -138,10 +138,11 @@ is_solid = function(x,y){
 generateLevel = function(){
   var currentTile;
   var generatedRow = "1"
-  var level=["2".repeat(Math.floor(currentMap[maps.length].length/2)) + "0".repeat(Math.floor(currentMap[maps.length].length/2)-1) + "1"]
+  var transition=generateTransition()
+  var level=["1" + "2".repeat(Math.floor(map_maxWidth/2)) + "0".repeat(Math.floor(map_maxWidth/2)-1) + "1"]
 
-  for (floors = 1; floors < 500; floors++){
-    for (i = 1; i < maps[0][maps.length].length-1;i++) {
+  for (floors = 0; floors < 500; floors++){
+    for (i = 1; i < map_maxWidth-1;i++) {
       aboveTile = maps[0][maps.length][i]
       prevTile = generatedRow[i - 1]
       currentTile=generateTile(aboveTile, prevTile)
@@ -151,13 +152,14 @@ generateLevel = function(){
     level.push(generatedRow+"1")
     generatedRow="1"
   } 
-  return (generateTransition() + level + generateTransition())
+  //transition + level + transition
+  return (transition.concat(level))
 }
 
 generateTransition = function(){
   var transitionLevels=[]
-  for (floors = 1; floors < 100; floors++){
-    transitionLevels.push("1"+"0".repeat(Math.floor(currentMap[maps.length].length/2))+"1")
+  for (floors = 0; floors < 100; floors++){
+    transitionLevels.push("1"+"0".repeat(map_maxWidth-2)+"1")
   }
   return (transitionLevels)
 }

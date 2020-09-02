@@ -13,11 +13,9 @@ var gameScore = 0;
 var bgimg = document.getElementById("background");
 var aboveTile;
 var prevTile;
-var currentTile=""
 var maxFloor=50
-var latestFloor=0
-var inTransition=false
 var currentMap=maps[0]
+var gameStart=false
 //var upTranslate=0.1
 
 game = function(){
@@ -30,6 +28,8 @@ game = function(){
   l3.value = frametime_coef;
   map_updateCounter++
   score.value = gameScore++;
+  xAxis.value = hero.x
+  yAxis.value = hero.y
   //zzz+=1;
   //rotate_hero(zzz);
 
@@ -50,19 +50,16 @@ game = function(){
   ctx.fillRect(0,0,5000,5000); 
   
   ctx.fillStyle = "black";
-  if (!inTransition) {
-    for(i in currentMap){
-      for(j in currentMap[i]){
-        if(currentMap[i][j] != "0"){
-          ctx.drawImage(tiles[currentMap[i][j]].sprite, j * tile_w, i * tile_h, tile_w, tile_h);
-        }
+  for(i in currentMap){
+    for(j in currentMap[i]){
+      if(currentMap[i][j] != "0"){
+        ctx.drawImage(tiles[currentMap[i][j]].sprite, j * tile_w, i * tile_h, tile_w, tile_h);
       }
     }
   }
 
-  if (hero.y >= -50) {
-    generateLevel = true
-    currentMap=maps[1]
+  if (hero.y === 100) {
+    gameStart=true;
   }
 
   // Draw the hero
@@ -72,6 +69,10 @@ game = function(){
   ctx.drawImage(hero_sprite, -12, -16, tile_w, tile_h);
   ctx.restore();
 
+  if (gameStart) {
+    currentMap=generateLevel()
+    gameStart=false
+  }
   //generate level functions HERE
 
   // Debug
