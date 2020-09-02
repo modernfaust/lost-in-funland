@@ -126,7 +126,7 @@ var hero = {
   // Variable
   walk_speed: 0,
   fall_speed: 0,
-  max_fall_speed: 10,
+  max_fall_speed: 6,
   
   // State
   freefall: true

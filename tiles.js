@@ -93,7 +93,7 @@ tiles = {
   },
   
   // 5: slope 45deg right
-  ",": {
+  "5": {
     sprite: slope_minus_45deg_left,
     solid: 2,
     solidity: function(x,y){
@@ -153,6 +153,7 @@ generateLevel = function(){
     generatedRow="1"
   } 
   //transition + level + transition
+  console.log(transition.concat(level))
   return (transition.concat(level))
 }
 

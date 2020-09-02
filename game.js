@@ -14,7 +14,6 @@ var bgimg = document.getElementById("background");
 var aboveTile;
 var prevTile;
 var maxFloor=50
-var currentMap=maps[0]
 var gameStart=false
 //var upTranslate=0.1
 
@@ -50,16 +49,17 @@ game = function(){
   ctx.fillRect(0,0,5000,5000); 
   
   ctx.fillStyle = "black";
-  for(i in currentMap){
-    for(j in currentMap[i]){
-      if(currentMap[i][j] != "0"){
-        ctx.drawImage(tiles[currentMap[i][j]].sprite, j * tile_w, i * tile_h, tile_w, tile_h);
+  for(i in maps[current_map]){
+    for(j in maps[current_map][i]){
+      if(maps[current_map][i][j] != "0"){
+        ctx.drawImage(tiles[maps[current_map][i][j]].sprite, j * tile_w, i * tile_h, tile_w, tile_h);
       }
     }
   }
 
-  if (hero.y === 100) {
+  if (hero.y >= 300 && hero.y <= 310) {
     gameStart=true;
+    console.log("game started")
   }
 
   // Draw the hero
@@ -70,8 +70,10 @@ game = function(){
   ctx.restore();
 
   if (gameStart) {
-    currentMap=generateLevel()
+    maps[1]=generateLevel()
     gameStart=false
+    current_map=1
+    console.log("level generation stop")
   }
   //generate level functions HERE
 

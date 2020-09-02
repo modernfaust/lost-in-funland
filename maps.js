@@ -30,6 +30,8 @@ maps[0] = [
   "1000000000000000000000001"
 ];
 
+maps[1]=[]
+
 var map_maxWidth = maps[0][0].length
 var current_map = 0;
 
