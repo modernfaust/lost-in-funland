@@ -46,7 +46,7 @@ game = function(){
   //canvas.width = canvas.width;
   var pat = ctx.createPattern(bgimg, "repeat");
   ctx.fillStyle = pat;
-  ctx.fillRect(0,0,5000,5000); 
+  ctx.fillRect(0,0,500,500); 
   
   ctx.fillStyle = "black";
   for(i in maps[current_map]){
