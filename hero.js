@@ -263,6 +263,7 @@ var move_hero = function(){
         &&
         !is_solid(hero.x + hero.L3[0], hero.y + hero.L3[1])
       ){
+        
         for(var j = 0; j < 4; j++){
           if(is_solid(hero.x + hero.L4[0] + -j * hero.bottom[0], hero.y + hero.L4[1] + -j * hero.bottom[1])){
             hero.x += -hero.bottom[0] * 4;

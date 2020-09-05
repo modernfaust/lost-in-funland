@@ -1,11 +1,5 @@
 /* Tiles */
 
-//rewrite this all
-// tile object template:
-// type
-// sprite
-// 
-
 // Size
 tile_w = 32;
 tile_h = 32;
@@ -23,9 +17,9 @@ tiles = {
     solid: 0,
     //probabilities out of 10
     nextTiles : {
-      "0": 8,
+      "0": 6,
       "1": 2,
-      "2": 0,
+      "2": 2,
       "3": 0,
       "4": 0
     }
@@ -37,9 +31,9 @@ tiles = {
     solid: 1,
     nextTiles : {
       "0": 3,
-      "1": 7,
+      "1": 5,
       "2": 0,
-      "3": 0,
+      "3": 2,
       "4": 0
     }
   },
@@ -52,11 +46,11 @@ tiles = {
       return y > tile_w - x;
     },
     nextTiles : {
-      "0": 2,
-      "1": 4,
-      "2": 1,
-      "3": 1,
-      "4": 2
+      "0": 0,
+      "1": 10,
+      "2": 0,
+      "3": 0,
+      "4": 0
     }
   },
   
@@ -68,11 +62,11 @@ tiles = {
       return y > x;
     },
     nextTiles : {
-      "0": 2,
-      "1": 4,
-      "2": 1,
-      "3": 1,
-      "4": 2
+      "0": 10,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0
     }
   },
   
@@ -139,10 +133,10 @@ generateLevel = function(){
   var currentTile;
   var generatedRow = "1"
   var transition=generateTransition()
-  var level=["1" + "2".repeat(Math.floor(map_maxWidth/2)) + "0".repeat(Math.floor(map_maxWidth/2)-1) + "1"]
-
-  
-  for (floors = 0; floors < 75; floors++) {
+/*   var level=["1" + "2".repeat(Math.floor(map_maxWidth/2)) + "0".repeat(Math.floor(map_maxWidth/2)-1) + "1"]
+ */
+var level=[]
+  for (floors = 0; floors < 500; floors++) {
     for (i = 1; i < map_maxWidth-1;i++) {
       aboveTile = maps[0][maps.length][i]
       prevTile = generatedRow[i - 1]
@@ -159,7 +153,7 @@ generateLevel = function(){
 
 generateTransition = function(){
   var transitionLevels=[]
-  for (floors = 0; floors < 50; floors++){
+  for (floors = 0; floors < 25; floors++){
     transitionLevels.push("1"+"0".repeat(map_maxWidth-2)+"1")
   }
   return (transitionLevels)
