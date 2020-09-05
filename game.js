@@ -15,7 +15,9 @@ var aboveTile;
 var prevTile;
 var maxFloor=50
 var gameStart=false
-//var upTranslate=0.1
+
+const clamp = (n, lo, hi) => n < lo ? lo : n > hi ? hi : n;
+
 
 game = function(){
   
@@ -35,9 +37,12 @@ game = function(){
   //center camera around hero
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  const camX = -hero.x + canvas.width / 2;
+  const camX = -hero.x + canvas.width /2;
   const camY = -hero.y + canvas.height / 2;
-  ctx.translate(camX, camY);
+  //clamp camera to map
+  x=clamp(camX,canvas.width - 800,0)
+  y=clamp(camY,canvas.height-maps[current_map].length* tile_h,0)
+  ctx.translate(x, y);
   
   // Make the hero move, walk, jump, fall...
   move_hero();
@@ -108,12 +113,12 @@ game = function(){
   // Next frame
   requestAnimationFrame(game);
 };
-
+/* 
 function clamp(value, min, max){
   if(value < min) return min;
   else if(value > max) return max;
   return value;
-}
+} */
 
 onload = function(){
   zzz = 0;//Math.floor(Math.random()*8) * 45;
