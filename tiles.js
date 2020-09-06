@@ -156,7 +156,7 @@ generateLevel = function(){
   var generatedRow;
   var transition=generateTransition()
   var level=[]
-  for (floors = 0; floors < 500; floors++) {
+  for (floors = 0; floors < 250; floors++) {
     generatedRow="1"
     for (i = 1; i < map_maxWidth-1;i++) {
       prevTile = generatedRow[i - 1]

@@ -69,15 +69,21 @@ game = function(){
   ctx.fillStyle = pat;
   ctx.fillRect(0,0,500,500); 
   
+  var tile_count = 0;
+
   ctx.fillStyle = "black";
   for(i in maps[current_map]){
     for(j in maps[current_map][i]){
+      if (i*tile_h < hero.y-(13*32) || i*tile_h > hero.y+(13*32)) {
+        break
+      }
       if(maps[current_map][i][j] != "0"){
         ctx.drawImage(tiles[maps[current_map][i][j]].sprite, j * tile_w, i * tile_h, tile_w, tile_h);
+        tile_count++
       }
     }
   }
-
+  console.log(tile_count)
   if (hero.y >= 300 && hero.y <= 305) {
     gameStart=true;
     console.log("game started")
