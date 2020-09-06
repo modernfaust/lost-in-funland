@@ -129,24 +129,45 @@ is_solid = function(x,y){
   return tiles[maps[current_map][tile_y][tile_x]].solidity(pixel_x, pixel_y);
 }
 
+is_badFloor = function (generatedRow){
+  //test if floor is a "bad floor"
+  //if there's a bad facing ramp
+  //if there's not an opening of at least 3 spaces
+  var voidCounter=0
+  if (generatedRow[generatedRow.length-1] === "3") {
+    return true
+  }
+  for (t in generatedRow) {
+    if (generatedRow[t] === "0") {
+      voidCounter++
+    }
+    else {
+      voidCounter=0
+    }
+    if (voidCounter > 3) {
+      return false
+    } 
+  }
+  return true
+}
+
 generateLevel = function(){
   var currentTile;
-  var generatedRow = "1"
+  var generatedRow;
   var transition=generateTransition()
-/*   var level=["1" + "2".repeat(Math.floor(map_maxWidth/2)) + "0".repeat(Math.floor(map_maxWidth/2)-1) + "1"]
- */
-var level=[]
+  var level=[]
   for (floors = 0; floors < 500; floors++) {
+    generatedRow="1"
     for (i = 1; i < map_maxWidth-1;i++) {
-      aboveTile = maps[0][maps.length][i]
       prevTile = generatedRow[i - 1]
-      currentTile=generateTile(aboveTile, prevTile)
+      currentTile=generateTile(prevTile)
       generatedRow+=currentTile
       currentTile=""
     }
-    level.push(generatedRow+"1")
-    level.push("1"+"0".repeat(map_maxWidth-2)+"1")
-    generatedRow="1"
+    if (!is_badFloor(generatedRow)) {
+      level.push(generatedRow+"1")
+      level.push("1"+"0".repeat(map_maxWidth-2)+"1")
+    }
   } 
   return (transition.concat(level))
 }
@@ -160,7 +181,7 @@ generateTransition = function(){
 }
 
 //generate appropriate tile in map
-generateTile = function(aboveTile, prevTile) {
+generateTile = function(prevTile) {
   var randomTiles = ""
   //build string of tiles to represent random draw
   for (var t in tiles[prevTile].nextTiles) {

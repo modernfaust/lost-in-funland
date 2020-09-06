@@ -120,7 +120,7 @@ var hero = {
   max_walk_speed: 3,
   walk_acceleration: 1,
   walk_idle_deceleration: -1,
-  jump_speed: -14,
+  jump_speed: -10,
   gravity: 0.5,
   
   // Variable

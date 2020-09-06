@@ -11,7 +11,6 @@ var map_updateCounter = 0;
 var generatedRow = "1"
 var gameScore = 0;
 var bgimg = document.getElementById("background");
-var aboveTile;
 var prevTile;
 var maxFloor=50
 var gameStart=false
@@ -79,7 +78,7 @@ game = function(){
     }
   }
 
-  if (hero.y >= 300 && hero.y <= 310) {
+  if (hero.y >= 300 && hero.y <= 305) {
     gameStart=true;
     console.log("game started")
   }
