@@ -133,6 +133,16 @@ var hero = {
 };
 
 // Functions
+
+/* var flip = function (speed) {
+  if (speed<0) {
+    ctx.save()
+    ctx.scale(-1,1)
+
+  }
+  ctx.restore()
+} */
+
 var rotate_hero = function(angle_deg){
   
   // Convert in radians

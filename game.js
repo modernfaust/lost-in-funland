@@ -88,6 +88,9 @@ game = function(){
   ctx.save();
   ctx.translate(hero.x, hero.y);
   ctx.rotate(hero.angle);
+  if (hero.walk_speed < 0) {
+    ctx.scale(-1, 1);
+  }
   ctx.drawImage(hero_sprite, -12, -16, tile_w, tile_h);
   ctx.restore();
 
