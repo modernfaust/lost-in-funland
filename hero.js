@@ -333,6 +333,15 @@ var move_hero = function(){
           hero.freefall = false;
           break mv;
         }
+        else if (is_trigger(hero.x + hero.L4[0] + j * hero.right[0], hero.y + hero.L4[1] + j * hero.right[1])){
+          console.log("level on")
+          maps[current_map].pop()
+          crawlingGas.speed*=2
+          maps[1]=maps[1].concat(generateLevel()).splice(30)
+/*           maps[current_map].splice(0,25)
+ */          current_map=1
+          crawlingGas.isCrawling=true
+        }
       }
     }
     

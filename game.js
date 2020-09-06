@@ -40,8 +40,8 @@ game = function(){
   const camY = -hero.y + canvas.height / 2;
   //clamp camera to map
   x=clamp(camX,canvas.width - 800,0)
-  y=clamp(camY,canvas.height-maps[current_map].length* tile_h,0)
-  ctx.translate(x, y);
+  y=clamp(camY,canvas.height-50*maps[current_map].length* tile_h,0)
+  ctx.translate(x,y);
   
   // Make the hero move, walk, jump, fall...
   move_hero();
@@ -66,29 +66,27 @@ game = function(){
   // Draw the scene
   //canvas.width = canvas.width;
   var pat = ctx.createPattern(bgimg, "repeat");
-  ctx.fillStyle = pat;
-  ctx.fillRect(0,0,500,500); 
+  ctx.fillStyle = "black";
+  ctx.fillRect(0,0,5000,5000); 
   
   var tile_count = 0;
 
   ctx.fillStyle = "black";
   for(i in maps[current_map]){
     for(j in maps[current_map][i]){
-      if (i*tile_h < hero.y-(13*32) || i*tile_h > hero.y+(13*32)) {
+      if (i*tile_h < hero.y-(15*32) || i*tile_h > hero.y+(20*32)) {
         break
       }
-      if(maps[current_map][i][j] != "0"){
+      if(maps[current_map][i][j] != "0" || maps[current_map][i][j] != "6"){
         ctx.drawImage(tiles[maps[current_map][i][j]].sprite, j * tile_w, i * tile_h, tile_w, tile_h);
         tile_count++
       }
     }
   }
-  console.log(tile_count)
-  if (hero.y >= 300 && hero.y <= 305) {
-    gameStart=true;
-    console.log("game started")
-  }
 
+  if (crawlingGas.isCrawling) {
+    crawl()
+  }
   // Draw the hero
   ctx.save();
   ctx.translate(hero.x, hero.y);
@@ -99,12 +97,6 @@ game = function(){
   ctx.drawImage(hero_sprite, -12, -16, tile_w, tile_h);
   ctx.restore();
 
-  if (gameStart) {
-    maps[1]=generateLevel()
-    gameStart=false
-    current_map=1
-    console.log("level generation stop")
-  }
   //generate level functions HERE
 
   // Debug

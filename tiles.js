@@ -15,6 +15,7 @@ tiles = {
   "0": {
     sprite: void_sprite,
     solid: 0,
+    isTrigger: false,
     //probabilities out of 10
     nextTiles : {
       "0": 6,
@@ -29,6 +30,7 @@ tiles = {
   "1": {
     sprite: wall_unportalable_sprite,
     solid: 1,
+    isTrigger: false,
     nextTiles : {
       "0": 3,
       "1": 5,
@@ -42,6 +44,7 @@ tiles = {
   "2": {
     sprite: slope_45deg_right,
     solid: 2,
+    isTrigger: false,
     solidity: function(x,y){
       return y > tile_w - x;
     },
@@ -58,6 +61,7 @@ tiles = {
   "3": {
     sprite: slope_45deg_left,
     solid: 2,
+    isTrigger: false,
     solidity: function(x,y){
       return y > x;
     },
@@ -74,6 +78,7 @@ tiles = {
   "4": {
     sprite: slope_minus_45deg_right,
     solid: 2,
+    isTrigger: false,
     solidity: function(x,y){
       return y < x;
     },
@@ -90,9 +95,16 @@ tiles = {
   "5": {
     sprite: slope_minus_45deg_left,
     solid: 2,
+    isTrigger: false,
     solidity: function(x,y){
       return y < tile_w - x;
     }
+  },
+
+  "6": {
+    sprite: trigger,
+    solid: 0,
+    isTrigger: true
   }
 };
 
@@ -129,6 +141,21 @@ is_solid = function(x,y){
   return tiles[maps[current_map][tile_y][tile_x]].solidity(pixel_x, pixel_y);
 }
 
+is_trigger = function(x,y){
+  var tile_y = Math.floor(y / tile_h);
+  
+  if(!maps[current_map][tile_y]){
+    return false
+  }
+  var tile_x = Math.floor(x / tile_w);
+    
+  if(!maps[current_map][tile_y][tile_x]){
+    return false;
+  }
+
+  return tiles[maps[current_map][tile_y][tile_x]].isTrigger
+}
+
 is_badFloor = function (generatedRow){
   //test if floor is a "bad floor"
   //if there's a bad facing ramp
@@ -156,7 +183,8 @@ generateLevel = function(){
   var generatedRow;
   var transition=generateTransition()
   var level=[]
-  for (floors = 0; floors < 250; floors++) {
+  var triggerRow=[]
+  for (floors = 0; floors < 40; floors++) {
     generatedRow="1"
     for (i = 1; i < map_maxWidth-1;i++) {
       prevTile = generatedRow[i - 1]
@@ -168,13 +196,14 @@ generateLevel = function(){
       level.push(generatedRow+"1")
       level.push("1"+"0".repeat(map_maxWidth-2)+"1")
     }
-  } 
-  return (transition.concat(level))
+  }
+  triggerRow.push("1"+"6".repeat(map_maxWidth-2)+"1")
+  return transition.concat(level,triggerRow)
 }
 
 generateTransition = function(){
   var transitionLevels=[]
-  for (floors = 0; floors < 25; floors++){
+  for (floors = 0; floors < 40; floors++){
     transitionLevels.push("1"+"0".repeat(map_maxWidth-2)+"1")
   }
   return (transitionLevels)
