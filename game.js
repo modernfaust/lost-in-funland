@@ -64,7 +64,6 @@ game = function(){
   ctx.restore();
 
   // Draw the scene
-  //canvas.width = canvas.width;
   var pat = ctx.createPattern(bgimg, "repeat");
   ctx.fillStyle = "black";
   ctx.fillRect(0,0,5000,5000); 
@@ -74,10 +73,10 @@ game = function(){
   ctx.fillStyle = "black";
   for(i in maps[current_map]){
     for(j in maps[current_map][i]){
-      if (i*tile_h < hero.y-(15*32) || i*tile_h > hero.y+(20*32)) {
+      if (i*tile_h < hero.y-(15*32) || i*tile_h > hero.y+(30*32)) {
         break
       }
-      if(maps[current_map][i][j] != "0" || maps[current_map][i][j] != "6"){
+      if(maps[current_map][i][j] != "0" && maps[current_map][i][j] != "6"){
         ctx.drawImage(tiles[maps[current_map][i][j]].sprite, j * tile_w, i * tile_h, tile_w, tile_h);
         tile_count++
       }
@@ -96,29 +95,22 @@ game = function(){
   }
   ctx.drawImage(hero_sprite, -12, -16, tile_w, tile_h);
   ctx.restore();
-
-  //generate level functions HERE
-
-  // Debug
-  /*for(var i in vectors){
-    ctx.fillStyle = "red";
-    ctx.fillRect(hero.x + hero[i][0]-1, hero.y + hero[i][1]-1,2,2);
-  }*/
-  
-  /*for(var j = 0; j < hero_w; j++){
-    ctx.fillStyle = "green";
-    ctx.fillRect(hero.x + hero.L4[0] + j * hero.right[0], hero.y + hero.L4[1] + j * hero.right[1],2,2);
-  }*/
-  
   // Next frame
   requestAnimationFrame(game);
 };
-/* 
-function clamp(value, min, max){
-  if(value < min) return min;
-  else if(value > max) return max;
-  return value;
-} */
+
+var crawlingGas = {
+  size: 0,
+  speed: 1,
+  fill: "red",
+  isCrawling: false
+}
+
+crawl = function () {
+  ctx.fillStyle=crawlingGas.fill
+  crawlingGas.size+=crawlingGas.speed
+  ctx.fillRect(0,0,tile_w*maps[0][0].length,crawlingGas.size)
+}
 
 onload = function(){
   zzz = 0;//Math.floor(Math.random()*8) * 45;

@@ -93,8 +93,8 @@ vectors = {
 
 // Properties
 var hero = {
-  x: 50, // x position of C2
-  y: -50, // y position of C2
+  x: 55, // x position of C2
+  y: 0, // y position of C2
   
   angle: 0, // angle in radians (0: head on top)
   
@@ -131,17 +131,6 @@ var hero = {
   // State
   freefall: true
 };
-
-// Functions
-
-/* var flip = function (speed) {
-  if (speed<0) {
-    ctx.save()
-    ctx.scale(-1,1)
-
-  }
-  ctx.restore()
-} */
 
 var rotate_hero = function(angle_deg){
   
@@ -334,12 +323,10 @@ var move_hero = function(){
           break mv;
         }
         else if (is_trigger(hero.x + hero.L4[0] + j * hero.right[0], hero.y + hero.L4[1] + j * hero.right[1])){
-          console.log("level on")
           maps[current_map].pop()
-          crawlingGas.speed*=2
+          crawlingGas.speed+=1
           maps[1]=maps[1].concat(generateLevel()).splice(30)
-/*           maps[current_map].splice(0,25)
- */          current_map=1
+          current_map=1
           crawlingGas.isCrawling=true
         }
       }

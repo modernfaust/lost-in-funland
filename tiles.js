@@ -197,13 +197,14 @@ generateLevel = function(){
       level.push("1"+"0".repeat(map_maxWidth-2)+"1")
     }
   }
-  triggerRow.push("1"+"6".repeat(map_maxWidth-2)+"1")
-  return transition.concat(level,triggerRow)
+
+  triggerRow="1"+"6".repeat(map_maxWidth-2)+"1"
+  return transition.concat(level,generateTransition().splice(45),triggerRow,generateTransition().splice(45))
 }
 
 generateTransition = function(){
   var transitionLevels=[]
-  for (floors = 0; floors < 40; floors++){
+  for (floors = 0; floors < 60; floors++){
     transitionLevels.push("1"+"0".repeat(map_maxWidth-2)+"1")
   }
   return (transitionLevels)
