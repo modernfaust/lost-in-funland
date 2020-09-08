@@ -86,6 +86,7 @@ game = function(){
   if (crawlingGas.isCrawling) {
     crawl()
   }
+
   // Draw the hero
   ctx.save();
   ctx.translate(hero.x, hero.y);
@@ -110,6 +111,10 @@ crawl = function () {
   ctx.fillStyle=crawlingGas.fill
   crawlingGas.size+=crawlingGas.speed
   ctx.fillRect(0,0,tile_w*maps[0][0].length,crawlingGas.size)
+
+  if (crawlingGas.size >= hero.y) {
+    location.href = '404.html'
+  }
 }
 
 onload = function(){

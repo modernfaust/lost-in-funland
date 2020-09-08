@@ -67,7 +67,6 @@ var uR4 = [11, 14];
 var uL5 = [-7, 14];
 var uR5 = [7, 14];
 
-
 // The names of the base vectors to rotate using maths, and their const equivalent
 base_vectors = {
   "right": uright,
@@ -94,7 +93,7 @@ vectors = {
 // Properties
 var hero = {
   x: 55, // x position of C2
-  y: 0, // y position of C2
+  y: 50, // y position of C2
   
   angle: 0, // angle in radians (0: head on top)
   
@@ -312,10 +311,16 @@ var move_hero = function(){
     hero.x += hero.bottom[0] * Math.sign(hero.fall_speed);
     hero.y += hero.bottom[1] * Math.sign(hero.fall_speed);
     
+
+
     // Detect collision on the bottom (L4,C3,R4)
     if(hero.fall_speed > 0){
       for(var j = 0; j < hero_w; j++){
+
         if(is_solid(hero.x + hero.L4[0] + j * hero.right[0], hero.y + hero.L4[1] + j * hero.right[1])){
+          if (is_spike(hero.x + hero.L4[0] + j * hero.right[0],hero.y + hero.L4[1] + j * hero.right[1])) {
+            location.href = '404.html'
+          }
           hero.fall_speed = 0;
           hero.x -= hero.bottom[0];
           hero.y -= hero.bottom[1];

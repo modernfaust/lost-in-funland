@@ -16,6 +16,8 @@ tiles = {
     sprite: void_sprite,
     solid: 0,
     isTrigger: false,
+    isSpike: false,
+    isBuff: false,
     //probabilities out of 10
     nextTiles : {
       "0": 6,
@@ -31,6 +33,8 @@ tiles = {
     sprite: wall_unportalable_sprite,
     solid: 1,
     isTrigger: false,
+    isSpike: false,
+    isBuff: false,
     nextTiles : {
       "0": 3,
       "1": 5,
@@ -45,6 +49,8 @@ tiles = {
     sprite: slope_45deg_right,
     solid: 2,
     isTrigger: false,
+    isSpike: false,
+    isBuff: false,
     solidity: function(x,y){
       return y > tile_w - x;
     },
@@ -62,6 +68,8 @@ tiles = {
     sprite: slope_45deg_left,
     solid: 2,
     isTrigger: false,
+    isSpike: false,
+    isBuff: false,
     solidity: function(x,y){
       return y > x;
     },
@@ -79,6 +87,8 @@ tiles = {
     sprite: slope_minus_45deg_right,
     solid: 2,
     isTrigger: false,
+    isSpike: false,
+    isBuff: false,
     solidity: function(x,y){
       return y < x;
     },
@@ -96,6 +106,8 @@ tiles = {
     sprite: slope_minus_45deg_left,
     solid: 2,
     isTrigger: false,
+    isSpike: false,
+    isBuff: false,
     solidity: function(x,y){
       return y < tile_w - x;
     }
@@ -104,27 +116,18 @@ tiles = {
   "6": {
     sprite: trigger,
     solid: 0,
-    isTrigger: true
+    isTrigger: true,
+    isSpike: false,
+    isBuff: false
   }
 };
 
-
 // Check if a coordinate (x:y) is on a solid pixel or not
 is_solid = function(x,y){
-  
-  var tile_y = Math.floor(y / tile_h);
 
-  // Return false if the pixel is at undefined map coordinates
-  if(!maps[current_map][tile_y]){
-    return false;
-  }
-  
+  var tile_y = Math.floor(y / tile_h);
   var tile_x = Math.floor(x / tile_w);
-  
-  if(!maps[current_map][tile_y][tile_x]){
-    return false;
-  }
-  
+
   // Return false if the tile is not solid
   if(tiles[maps[current_map][tile_y][tile_x]].solid === 0){
     return false;
@@ -143,17 +146,16 @@ is_solid = function(x,y){
 
 is_trigger = function(x,y){
   var tile_y = Math.floor(y / tile_h);
-  
-  if(!maps[current_map][tile_y]){
-    return false
-  }
-  var tile_x = Math.floor(x / tile_w);
-    
-  if(!maps[current_map][tile_y][tile_x]){
-    return false;
-  }
+  var tile_x = Math.floor(x / tile_w); 
 
   return tiles[maps[current_map][tile_y][tile_x]].isTrigger
+}
+
+is_spike = function(x,y){
+  var tile_y = Math.floor(y / tile_h);
+  var tile_x = Math.floor(x / tile_w); 
+  
+  return tiles[maps[current_map][tile_y][tile_x]].isSpike
 }
 
 is_badFloor = function (generatedRow){
@@ -173,7 +175,7 @@ is_badFloor = function (generatedRow){
     }
     if (voidCounter > 3) {
       return false
-    } 
+    }
   }
   return true
 }
