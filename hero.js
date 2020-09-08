@@ -310,8 +310,6 @@ var move_hero = function(){
   mv: for(var i = 0; i < Math.abs(hero.fall_speed) * frametime_coef; i++){
     hero.x += hero.bottom[0] * Math.sign(hero.fall_speed);
     hero.y += hero.bottom[1] * Math.sign(hero.fall_speed);
-    
-
 
     // Detect collision on the bottom (L4,C3,R4)
     if(hero.fall_speed > 0){
@@ -321,11 +319,17 @@ var move_hero = function(){
           if (is_spike(hero.x + hero.L4[0] + j * hero.right[0],hero.y + hero.L4[1] + j * hero.right[1])) {
             location.href = '404.html'
           }
+          if (is_buff(hero.x + hero.L4[0] + j * hero.right[0],hero.y + hero.L4[1] + j * hero.right[1])) {
+            hero.speed += 5
+          }
+          
           hero.fall_speed = 0;
           hero.x -= hero.bottom[0];
           hero.y -= hero.bottom[1];
           hero.freefall = false;
+
           break mv;
+
         }
         else if (is_trigger(hero.x + hero.L4[0] + j * hero.right[0], hero.y + hero.L4[1] + j * hero.right[1])){
           maps[current_map].pop()

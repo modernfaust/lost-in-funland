@@ -37,10 +37,10 @@ tiles = {
     isBuff: false,
     nextTiles : {
       "0": 3,
-      "1": 5,
+      "1": 4,
       "2": 0,
       "3": 2,
-      "4": 0
+      "4": 1
     }
   },
   
@@ -63,7 +63,7 @@ tiles = {
     }
   },
   
-  // 3: slope 45deg left
+  // 3: spike
   "3": {
     sprite: slope_45deg_left,
     solid: 2,
@@ -82,12 +82,12 @@ tiles = {
     }
   },
   
-  // 4: slope 45deg right
+  // 4: spike
   "4": {
-    sprite: slope_minus_45deg_right,
+    sprite: spike,
     solid: 2,
     isTrigger: false,
-    isSpike: false,
+    isSpike: true,
     isBuff: false,
     solidity: function(x,y){
       return y < x;
@@ -112,7 +112,7 @@ tiles = {
       return y < tile_w - x;
     }
   },
-
+  // trigger block for game start
   "6": {
     sprite: trigger,
     solid: 0,
@@ -156,6 +156,13 @@ is_spike = function(x,y){
   var tile_x = Math.floor(x / tile_w); 
   
   return tiles[maps[current_map][tile_y][tile_x]].isSpike
+}
+
+is_buff = function(x,y){
+  var tile_y = Math.floor(y / tile_h);
+  var tile_x = Math.floor(x / tile_w); 
+  
+  return tiles[maps[current_map][tile_y][tile_x]].isBuff
 }
 
 is_badFloor = function (generatedRow){

@@ -27,7 +27,6 @@ game = function(){
   frametime_coef = frametime / normal_frametime;
   l3.value = frametime_coef;
   map_updateCounter++
-  score.value = gameScore++;
   xAxis.value = hero.x
   yAxis.value = hero.y
   //zzz+=1;
@@ -68,23 +67,23 @@ game = function(){
   ctx.fillStyle = "black";
   ctx.fillRect(0,0,5000,5000); 
   
-  var tile_count = 0;
-
   ctx.fillStyle = "black";
-  for(i in maps[current_map]){
+  for(i=Math.floor((hero.y - 15*32)/tile_h); i <= maps[current_map].length; i++){
+/*     if (i*tile_h < hero.y-(15*32) || i*tile_h > hero.y+(30*32)) {
+      console.log("this happened")
+      break
+    } */
     for(j in maps[current_map][i]){
-      if (i*tile_h < hero.y-(15*32) || i*tile_h > hero.y+(30*32)) {
-        break
-      }
       if(maps[current_map][i][j] != "0" && maps[current_map][i][j] != "6"){
-        ctx.drawImage(tiles[maps[current_map][i][j]].sprite, j * tile_w, i * tile_h, tile_w, tile_h);
-        tile_count++
+        ctxB.drawImage(tiles[maps[current_map][i][j]].sprite, j * tile_w, i * tile_h, tile_w, tile_h);
       }
     }
   }
 
   if (crawlingGas.isCrawling) {
     crawl()
+    gameScore++
+    score.value = Math.floor(gameScore/10);
   }
 
   // Draw the hero
@@ -111,7 +110,6 @@ crawl = function () {
   ctx.fillStyle=crawlingGas.fill
   crawlingGas.size+=crawlingGas.speed
   ctx.fillRect(0,0,tile_w*maps[0][0].length,crawlingGas.size)
-
   if (crawlingGas.size >= hero.y) {
     location.href = '404.html'
   }

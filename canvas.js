@@ -2,7 +2,7 @@
 
 // Canvas context
 ctx = canvas.getContext("2d");
-
+ctxB = canvas.getContext("2d");
 // Canvas DOMRect
 canvas_rect = {};
 
