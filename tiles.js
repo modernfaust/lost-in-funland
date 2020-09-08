@@ -21,10 +21,11 @@ tiles = {
     //probabilities out of 10
     nextTiles : {
       "0": 6,
-      "1": 2,
-      "2": 2,
+      "1": 0,
+      "2": 4,
       "3": 0,
-      "4": 0
+      "4": 0,
+      "5": 0
     }
   },
   
@@ -36,11 +37,12 @@ tiles = {
     isSpike: false,
     isBuff: false,
     nextTiles : {
-      "0": 3,
-      "1": 4,
+      "0": 0,
+      "1": 5,
       "2": 0,
-      "3": 2,
-      "4": 1
+      "3": 3,
+      "4": 1,
+      "5": 0
     }
   },
   
@@ -59,11 +61,13 @@ tiles = {
       "1": 10,
       "2": 0,
       "3": 0,
-      "4": 0
+      "4": 0,
+      "5": 0
+
     }
   },
   
-  // 3: spike
+  // 3: left slope
   "3": {
     sprite: slope_45deg_left,
     solid: 2,
@@ -78,7 +82,9 @@ tiles = {
       "1": 0,
       "2": 0,
       "3": 0,
-      "4": 0
+      "4": 0,
+      "5": 0
+
     }
   },
   
@@ -93,25 +99,37 @@ tiles = {
       return y < x;
     },
     nextTiles : {
-      "0": 2,
+      "0": 0,
       "1": 4,
-      "2": 1,
-      "3": 1,
-      "4": 2
+      "2": 0,
+      "3": 3,
+      "4": 3,
+      "5": 0
+
     }
   },
   
-  // 5: slope 45deg right
+  // 5: buff
   "5": {
-    sprite: slope_minus_45deg_left,
+    sprite: buff,
     solid: 2,
     isTrigger: false,
     isSpike: false,
-    isBuff: false,
+    isBuff: true,
     solidity: function(x,y){
       return y < tile_w - x;
+    },
+    nextTiles : {
+      "0": 0,
+      "1": 4,
+      "2": 0,
+      "3": 3,
+      "4": 3,
+      "5": 0
+
     }
   },
+
   // trigger block for game start
   "6": {
     sprite: trigger,
@@ -187,13 +205,13 @@ is_badFloor = function (generatedRow){
   return true
 }
 
-generateLevel = function(){
+generateLevel = function(numFloors){
   var currentTile;
   var generatedRow;
-  var transition=generateTransition()
+  var transition=generateTransition(25)
   var level=[]
   var triggerRow=[]
-  for (floors = 0; floors < 40; floors++) {
+  for (floors = 0; floors <= numFloors; floors++) {
     generatedRow="1"
     for (i = 1; i < map_maxWidth-1;i++) {
       prevTile = generatedRow[i - 1]
@@ -204,16 +222,17 @@ generateLevel = function(){
     if (!is_badFloor(generatedRow)) {
       level.push(generatedRow+"1")
       level.push("1"+"0".repeat(map_maxWidth-2)+"1")
+      level.push("1"+"0".repeat(map_maxWidth-2)+"1")
     }
   }
 
   triggerRow="1"+"6".repeat(map_maxWidth-2)+"1"
-  return transition.concat(level,generateTransition().splice(45),triggerRow,generateTransition().splice(45))
+  return transition.concat(level,generateTransition(10),triggerRow,generateTransition(10))
 }
 
-generateTransition = function(){
+generateTransition = function(numFloors){
   var transitionLevels=[]
-  for (floors = 0; floors < 60; floors++){
+  for (floors = 0; floors <= numFloors; floors++){
     transitionLevels.push("1"+"0".repeat(map_maxWidth-2)+"1")
   }
   return (transitionLevels)

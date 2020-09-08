@@ -17,7 +17,7 @@ var gameStart=false
 
 const clamp = (n, lo, hi) => n < lo ? lo : n > hi ? hi : n;
 
-
+score.value=0
 game = function(){
   
   // Handle framerate
@@ -44,24 +44,6 @@ game = function(){
   
   // Make the hero move, walk, jump, fall...
   move_hero();
-  //DRAW COLLISION POINTS FOR DEBUGGING
-  ctx.save();
-  ctx.fillStyle = "red"
-  ctx.fillRect(hero.x + hero.L1[0], hero.y + hero.L1[1],3,3)
-  ctx.fillRect(hero.x + hero.C1[0], hero.y + hero.C1[1],3,3)
-  ctx.fillRect(hero.x + hero.R1[0], hero.y + hero.R1[1],3,3)
-  ctx.fillRect(hero.x + hero.L2[0], hero.y + hero.L2[1],3,3)
-  ctx.fillRect(hero.x + hero.R2[0], hero.y + hero.R2[1],3,3)
-  ctx.fillRect(hero.x + hero.L3[0], hero.y + hero.L3[1],3,3)
-  ctx.fillRect(hero.x + hero.L4[0], hero.y + hero.L4[1],3,3)
-  ctx.fillRect(hero.x + hero.L5[0], hero.y + hero.L5[1],3,3)
-  ctx.fillRect(hero.x + hero.C3[0], hero.y + hero.C3[1],3,3)
-  ctx.fillRect(hero.x + hero.R5[0], hero.y + hero.R5[1],3,3)
-  ctx.fillRect(hero.x + hero.R4[0], hero.y + hero.R4[1],3,3)
-  ctx.fillRect(hero.x + hero.R3[0], hero.y + hero.R3[1],3,3)
-  ctx.fillRect(hero.x + hero.R2[0], hero.y + hero.R2[1],3,3)
-  ctx.restore();
-
   // Draw the scene
   ctx.fillStyle = "black";
   ctx.fillRect(0,0,5000,5000); 
