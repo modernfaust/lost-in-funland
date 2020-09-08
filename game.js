@@ -75,7 +75,7 @@ game = function(){
     } */
     for(j in maps[current_map][i]){
       if(maps[current_map][i][j] != "0" && maps[current_map][i][j] != "6"){
-        ctxB.drawImage(tiles[maps[current_map][i][j]].sprite, j * tile_w, i * tile_h, tile_w, tile_h);
+        ctx.drawImage(tiles[maps[current_map][i][j]].sprite, j * tile_w, i * tile_h, tile_w, tile_h);
       }
     }
   }
