@@ -110,6 +110,9 @@ crawl = function () {
   ctx.fillStyle=crawlingGas.fill
   crawlingGas.size+=crawlingGas.speed
   ctx.fillRect(0,0,tile_w*maps[0][0].length,crawlingGas.size)
+  if (crawlingGas.size >= hero.x) {
+    console.log("kill player")
+  }
 }
 
 onload = function(){

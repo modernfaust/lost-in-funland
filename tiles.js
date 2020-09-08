@@ -158,8 +158,6 @@ is_spike = function(x,y){
   return tiles[maps[current_map][tile_y][tile_x]].isSpike
 }
 
-
-
 is_badFloor = function (generatedRow){
   //test if floor is a "bad floor"
   //if there's a bad facing ramp
