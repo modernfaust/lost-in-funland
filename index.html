@@ -101,13 +101,10 @@ input { height: 30px; width: 200px; margin: 10px; text-align: center;}
   
   <div>
   <canvas id=canvas width=640 height=800></canvas>
-  <img class=preload src="img/matrix.PNG" id="background">
   <img class=preload src="img/hero.png" id=hero_sprite>
   <img class=preload src="img/platform_2.png" id=wall_unportalable_sprite>
   <img class=preload src="img/wall_portalable.png" id=wall_portalable_sprite>
-  <img class=preload src="img/gun.png" id=gun_sprite>
   <img class=preload src="img/void.png" id=void_sprite>
-  <img class=preload src="img/exit.png" id=exit_sprite>
   <img class=preload src="img/slope.png" id=slope_45deg_left>
   <img class=preload src="img/Slope_fliped.png" id=slope_45deg_right>
   <img class=preload src="img/Spike.png" id=spike>
@@ -115,18 +112,16 @@ input { height: 30px; width: 200px; margin: 10px; text-align: center;}
   <img class=preload src="img/slopeminus45degright.png" id=slope_minus_45deg_right>
   <img class=preload src="img/Buff.png" id=trigger>
 
-
-  <script>
-  document.getElementById('endGameBtn').addEventListener("click", function() {
-	document.querySelector('.bg-modal').style.display = "flex";
-});
-
-  document.querySelector('.close').addEventListener("click", function() {
-	document.querySelector('.bg-modal').style.display = "none";
-});
-  </script>
   </div>
-  <script src=modal.js></script>
+  <script>
+    document.getElementById('endGameBtn').addEventListener("click", function() {
+    document.querySelector('.bg-modal').style.display = "flex";
+  });
+  
+    document.querySelector('.close').addEventListener("click", function() {
+    document.querySelector('.bg-modal').style.display = "none";
+  });
+    </script>
   <script src=canvas.js></script>
   <script src=tiles.js></script>
   <script src=maps.js></script>

@@ -63,7 +63,6 @@ game = function(){
   ctx.restore();
 
   // Draw the scene
-  var pat = ctx.createPattern(bgimg, "repeat");
   ctx.fillStyle = "black";
   ctx.fillRect(0,0,5000,5000); 
   
