@@ -316,7 +316,11 @@ var move_hero = function(){
     // Detect collision on the bottom (L4,C3,R4)
     if(hero.fall_speed > 0){
       for(var j = 0; j < hero_w; j++){
+
         if(is_solid(hero.x + hero.L4[0] + j * hero.right[0], hero.y + hero.L4[1] + j * hero.right[1])){
+          if (is_spike(hero.x + hero.L4[0] + j * hero.right[0],hero.y + hero.L4[1] + j * hero.right[1])) {
+            location.href = '404.html'
+          }
           hero.fall_speed = 0;
           hero.x -= hero.bottom[0];
           hero.y -= hero.bottom[1];
@@ -329,9 +333,6 @@ var move_hero = function(){
           maps[1]=maps[1].concat(generateLevel()).splice(30)
           current_map=1
           crawlingGas.isCrawling=true
-        }
-        else if (is_spike(hero.x + hero.L4[0] + j * hero.right[0],hero.y + hero.L4[1] + j * hero.right[1])) {
-          //kill hero
         }
       }
     }
