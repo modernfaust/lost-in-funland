@@ -45,6 +45,10 @@
     function onLoad() { // Function to load canvas function
         var canvas = document.getElementById("canvas"); // Define canvas to grab from html
         matrix(canvas);
+        setTimeout(function(){
+            window.location.href = 'index.html';
+        }, 15000);
+        
     }
 </script>
 
@@ -54,4 +58,6 @@
     <div id="content">
         <canvas id="canvas">
     </div>
+
+
 </body>
