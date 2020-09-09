@@ -116,16 +116,16 @@ var hero = {
 
   // Speeds and accelerations:
   // Constant
-  max_walk_speed: 3,
+  max_walk_speed: 2,
   walk_acceleration: 1,
   walk_idle_deceleration: -1,
-  jump_speed: -10,
+  jump_speed: -12,
   gravity: 0.5,
-  
   // Variable
+  boost_speed: 0,
   walk_speed: 0,
   fall_speed: 0,
-  max_fall_speed: 6,
+  max_fall_speed: 5,
   
   // State
   freefall: true
@@ -158,13 +158,12 @@ var move_hero = function(){
     
   // Walk left:
   if(keys.left && !keys.right){
-    
     // Apply a negative walk acceleration to the hero's speed
-    hero.walk_speed -= hero.walk_acceleration;
+    hero.walk_speed -= hero.walk_acceleration + hero.boost_speed;
     
     // Limit the hero's speed
-    if(hero.walk_speed < -hero.max_walk_speed){
-      hero.walk_speed = -hero.max_walk_speed;
+    if(hero.walk_speed < -hero.max_walk_speed - hero.boost_speed){
+      hero.walk_speed = -hero.max_walk_speed - hero.boost_speed;
     }
   }
   
@@ -172,11 +171,11 @@ var move_hero = function(){
   else if(keys.right && !keys.left){
     
     // Apply a negative walk acceleration to the hero's speed
-    hero.walk_speed += hero.walk_acceleration;
+    hero.walk_speed += hero.walk_acceleration + hero.boost_speed;
     
     // Limit the hero's speed
-    if(hero.walk_speed > hero.max_walk_speed){
-      hero.walk_speed = hero.max_walk_speed;
+    if(hero.walk_speed > hero.max_walk_speed + hero.boost_speed ){
+      hero.walk_speed = hero.max_walk_speed + hero.boost_speed;
     }
   }
   
@@ -298,10 +297,10 @@ var move_hero = function(){
   }
   
   // Freefall:
-  hero.fall_speed += hero.gravity;
+  hero.fall_speed += hero.gravity + hero.boost_speed;
   
   if(hero.fall_speed > hero.max_fall_speed){
-    hero.fall_speed = hero.max_fall_speed;
+    hero.fall_speed = hero.max_fall_speed + hero.boost_speed;
   }
   
   l1.value = hero.fall_speed;
@@ -322,20 +321,21 @@ var move_hero = function(){
           if (is_buff(hero.x + hero.L4[0] + j * hero.right[0],hero.y + hero.L4[1] + j * hero.right[1])) {
             hero.speed += 5
           }
-          
           hero.fall_speed = 0;
           hero.x -= hero.bottom[0];
           hero.y -= hero.bottom[1];
           hero.freefall = false;
-
           break mv;
 
         }
         else if (is_trigger(hero.x + hero.L4[0] + j * hero.right[0], hero.y + hero.L4[1] + j * hero.right[1])){
           maps[current_map].pop()
           crawlingGas.speed+=1
-          maps[1]=maps[1].concat(generateLevel(80)).splice(1)
+          maps[1]=maps[1].concat(generateLevel(100)).splice(1)
           current_map=1
+          hero.max_fall_speed+= 1/3
+          hero.max_walk_speed+= 1/3
+          
           crawlingGas.isCrawling=true
         }
       }

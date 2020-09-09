@@ -82,7 +82,7 @@ game = function(){
 
 var crawlingGas = {
   size: 0,
-  speed: 1,
+  speed: 1/2,
   fill: "red",
   isCrawling: false
 }
@@ -92,7 +92,7 @@ crawl = function () {
   crawlingGas.size+=crawlingGas.speed
   ctx.fillRect(0,0,tile_w*maps[0][0].length,crawlingGas.size)
   if (crawlingGas.size >= hero.y) {
-    location.href = '404.html'
+    location.href="404.html"
   }
 }
 

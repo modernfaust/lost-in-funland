@@ -223,6 +223,7 @@ generateLevel = function(numFloors){
       level.push(generatedRow+"1")
       level.push("1"+"0".repeat(map_maxWidth-2)+"1")
       level.push("1"+"0".repeat(map_maxWidth-2)+"1")
+      level.push("1"+"0".repeat(map_maxWidth-2)+"1")
     }
   }
 
