@@ -1,3 +1,4 @@
+<html>
 <style>
 
     #content {
@@ -9,6 +10,23 @@
     canvas {
         width: 100%;
         height: 100%;
+    }
+
+    #writer {
+        bottom: 50%;
+        left: 50%;
+        color: red;
+        position: absolute;
+        text-align: center;
+        font-size: 100px;
+    }
+    #writer2 {
+        bottom: 55%;
+        left: 50%;
+        color: red;
+        position: absolute;
+        text-align: center;
+        font-size: 30px;
     }
 </style>
 
@@ -42,9 +60,35 @@
             setInterval(draw, 40); // Set Refresh Intervals
     }
 
+    // define typewriter variables
+    var i = 0;
+    var j = 0;
+    var txt = '404'
+    var txt2 = 'Page Not Found'
+    var speed = 750;
+    var speed = 150;
+
+    function typewriter() {
+        if (i < txt.length) {
+            document.getElementById("writer").innerHTML += txt.charAt(i);
+            i++;
+            setTimeout(typewriter, speed);
+        }
+    }
+
+    function typewriter2() {
+        if (j < txt2.length) {
+            document.getElementById("writer2").innerHTML += txt2.charAt(j);
+            j++;
+            setTimeout(typewriter2, speed);
+        }
+    }
+
     function onLoad() { // Function to load canvas function
         var canvas = document.getElementById("canvas"); // Define canvas to grab from html
         matrix(canvas);
+        typewriter();
+        typewriter2();
         setTimeout(function(){
             window.location.href = 'index.html';
         }, 15000);
@@ -56,8 +100,13 @@
 <body style="margin:0;" onload="onLoad();";>
 
     <div id="content">
-        <canvas id="canvas">
+        <canvas id="canvas"></canvas>
+        <div>
+        <p id="writer"></p>
+        <p id="writer2"></p>
+        </div>
     </div>
 
 
 </body>
+</html>
