@@ -15,11 +15,11 @@ var maxFloor=50
 var gameStart=false
 var levelColor=0
 const clamp = (n, lo, hi) => n < lo ? lo : n > hi ? hi : n;
-var isPause = true;
+var isPause = false;
 
 score.value=0
 game = function(){
-  
+  if (!isPause) {
   // Handle framerate
   time = +new Date();
   frametime = time - prev_time;
@@ -72,8 +72,9 @@ game = function(){
   ctx.drawImage(hero_sprite, -12, -16, tile_w, tile_h);
   ctx.restore();
   levelColor=Math.floor(hero.y/500);
-  // Next frame
-  requestAnimationFrame(game);
+// Next frame 
+    requestAnimationFrame(game);
+}
 };
 
 var crawlingGas = {
@@ -104,9 +105,5 @@ onload = function(){
   zzz = 0;//Math.floor(Math.random()*8) * 45;
   rotate_hero(zzz);
   //if true game runs
-  console.log(isPause);
-  if (isPause) {
-    game();
-    
-  }
+  game(); 
 }
