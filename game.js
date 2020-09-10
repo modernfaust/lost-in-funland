@@ -14,7 +14,7 @@ var bgimg = document.getElementById("background");
 var prevTile;
 var maxFloor=50
 var gameStart=false
-
+var levelColor=0
 const clamp = (n, lo, hi) => n < lo ? lo : n > hi ? hi : n;
 
 score.value=0
@@ -37,6 +37,8 @@ game = function(){
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   const camX = -hero.x + canvas.width /2;
   const camY = -hero.y + canvas.height / 2;
+  ctx.fillStyle = "rgb("+levelColor+"," + 0 + "," + 0 + ")";
+  ctx.fillRect(0,0,canvas.width,2000); 
   //clamp camera to map
   x=clamp(camX,canvas.width - 800,0)
   y=clamp(camY,canvas.height-50*maps[current_map].length* tile_h,0)
@@ -45,11 +47,9 @@ game = function(){
   // Make the hero move, walk, jump, fall...
   move_hero();
   // Draw the scene
-  ctx.fillStyle = "black";
-  ctx.fillRect(0,0,5000,5000); 
   
-  ctx.fillStyle = "black";
-  for(i=Math.floor((hero.y - 15*tile_h)/tile_h); i <= maps[current_map].length; i++){
+/*   ctx.fillStyle = "black";
+ */  for(i=Math.floor((hero.y - 15*tile_h)/tile_h); i <= maps[current_map].length; i++){
     for(j in maps[current_map][i]){
       if(maps[current_map][i][j] != "0" && maps[current_map][i][j] != "6"){
         ctx.drawImage(tiles[maps[current_map][i][j]].sprite, j * tile_w, i * tile_h, tile_w, tile_h);
@@ -84,14 +84,18 @@ var crawlingGas = {
 }
 
 crawl = function () {
-  ctx.fillStyle=crawlingGas.fill
   crawlingGas.size+=crawlingGas.speed
+  ctx.fillStyle=crawlingGas.fill
+/*   ctx.drawImage(wall_unportalable_sprite,0,0,tile_w*maps[0][0].length,crawlingGas.size)
+ */
+
   ctx.fillRect(0,0,tile_w*maps[0][0].length,crawlingGas.size)
-/*   if (crawlingGas.size >= hero.y - 13*tile_h && crawlingGas.size < hero.y) {
+ /*   if (crawlingGas.size >= hero.y - 13*tile_h && crawlingGas.size < hero.y) {
     crawlingGas.speed /= 2
     console.log("this happened")
   }  */
   if (crawlingGas.size >= hero.y) {
+    ctx.clearRect(0,0,5000,5000)
     location.href="404.html"
   }
 }
