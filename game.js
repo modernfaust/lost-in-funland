@@ -17,7 +17,6 @@ var levelColor=0
 const clamp = (n, lo, hi) => n < lo ? lo : n > hi ? hi : n;
 var isPause = false;
 
-score.value=0
 game = function(){
   if (!isPause) {
   // Handle framerate
@@ -99,6 +98,57 @@ crawl = function () {
     ctx.clearRect(0,0,5000,5000)
     location.href="404.html"
   }
+}
+
+function matrix(q) { // Function for matrix Effect
+        
+
+  // Define variables
+  var s = window.screen; // The window
+  var width = q.width = s.width; // Width of window
+  var height = q.height = s.height; // Height of window
+  var letters = Array(256).join(1).split(''); // Array with 256 start at 1 and split string in array
+
+  var draw = function() { // Function to draw the canvas
+
+      q.getContext('2d').fillStyle='rgba(0,0,0,.05)'; // Draw Black background with transparacy
+      q.getContext('2d').fillRect(0,0,width,height); // Fill the whole screen
+      q.getContext('2d').fillStyle='#0F0'; // Add Green Color
+
+      letters.map( //Map function for Array
+
+          function(y_pos, index) {
+
+              text = String.fromCharCode(3e4+Math.random()*33); // Create random number for Char of matrix
+              x_pos = index * 10; // Set the index value
+              q.getContext('2d').fillText(text, x_pos, y_pos); // Fill canvas with letters
+              letters[index] = (y_pos > 758 + Math.random() * 1e4) ? 0 : y_pos + 10; // Increment the Y coord and add randomizer for reset
+          });
+      };
+      setInterval(draw, 40); // Set Refresh Intervals
+}
+
+// define typewriter variables
+var i = 0;
+var txt = '404'
+var speed = 750;
+
+function typewriter() {
+  if (i < txt.length) {
+      document.getElementById("writer").innerHTML += txt.charAt(i);
+      i++;
+      setTimeout(typewriter, speed);
+  }
+}
+
+function onLoad() { // Function to load canvas function
+  var canvas = document.getElementById("canvas"); // Define canvas to grab from html
+  matrix(canvas);
+  typewriter();
+  setTimeout(function(){
+      window.location.href = 'index.html';
+  }, 7000);
+  
 }
 
 onload = function(){
