@@ -88,10 +88,10 @@ input { height: 30px; width: 200px; margin: 10px; text-align: center;}
 
   <span style="color: rgb(250, 0, 0); margin: 2px;"> Score </span>
   <input id=score>
-  <span style="color: rgb(250, 0, 0); margin: 2px;"> X Axis </span>
-  <input id=xAxis>
-  <span style="color: rgb(250, 0, 0); margin: 2px;"> Y Axis </span>
-  <input id=yAxis>
+  <span style="color: rgb(250, 0, 0); margin: 2px;"></span>
+  <input id=xAxis hidden>
+  <span style="color: rgb(250, 0, 0); margin: 2px;"></span>
+  <input id=yAxis hidden>
 
 
   <a href="404.html"><button>404</button></a>
@@ -107,6 +107,7 @@ input { height: 30px; width: 200px; margin: 10px; text-align: center;}
   <img class=preload src="img/Spike.png" id=spike>
   <img class=preload src="img/Buff.png" id=buff>
   <img class=preload src="img/void.png" id=trigger>
+  <img class=preload src="img/Fog.png" id=fog>
 
   </div>
   <script>
@@ -116,6 +117,7 @@ input { height: 30px; width: 200px; margin: 10px; text-align: center;}
   
     document.querySelector('.close').addEventListener("click", function() {
     document.querySelector('.bg-modal').style.display = "none";
+    ispause = true;
   });
     </script>
   <script src=canvas.js></script>

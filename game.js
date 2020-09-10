@@ -15,6 +15,7 @@ var maxFloor=50
 var gameStart=false
 var levelColor=0
 const clamp = (n, lo, hi) => n < lo ? lo : n > hi ? hi : n;
+var isPause = true;
 
 score.value=0
 game = function(){
@@ -78,18 +79,18 @@ game = function(){
 var crawlingGas = {
   size: 0,
   speed: 3,
-  fill: "red",
+  fill: "fog",
   isCrawling: false
 }
 
 crawl = function () {
   crawlingGas.size+=crawlingGas.speed
   ctx.fillStyle=crawlingGas.fill
-/*   ctx.drawImage(wall_unportalable_sprite,0,0,tile_w*maps[0][0].length,crawlingGas.size)
- */
+  ctx.drawImage(fog,0,0,tile_w*maps[0][0].length,crawlingGas.size)
 
-  ctx.fillRect(0,0,tile_w*maps[0][0].length,crawlingGas.size)
- /*   if (crawlingGas.size >= hero.y - 13*tile_h && crawlingGas.size < hero.y) {
+
+/*   ctx.fillRect(0,0,tile_w*maps[0][0].length,crawlingGas.size)
+ */ /*   if (crawlingGas.size >= hero.y - 13*tile_h && crawlingGas.size < hero.y) {
     crawlingGas.speed /= 2
     console.log("this happened")
   }  */
@@ -102,5 +103,10 @@ crawl = function () {
 onload = function(){
   zzz = 0;//Math.floor(Math.random()*8) * 45;
   rotate_hero(zzz);
-  game();
+  //if true game runs
+  console.log(isPause);
+  if (isPause) {
+    game();
+    
+  }
 }

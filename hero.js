@@ -157,9 +157,13 @@ var rotate_hero = function(angle_deg){
 var move_hero = function(){
   
 
-
   // Walk left:
-  if(keys.left && !keys.right) {
+  if(keys.left && !keys.right || keys.pause) {
+
+      if( keys.pause) {
+        document.getElementById("endGameBtn").click();
+        ispause = false;
+      }
     // Apply a negative walk acceleration to the hero's speed
     hero.walk_speed -= hero.walk_acceleration + hero.boost_speed;
     
@@ -169,8 +173,12 @@ var move_hero = function(){
       }
     }
 
-    else if(keys.right && !keys.left){
+    else if(keys.right && !keys.left || keys.pause){
     
+      if( keys.pause) {
+        document.getElementById("endGameBtn").click();
+        ispause = false;
+      }
       // Apply a negative walk acceleration to the hero's speed
       hero.walk_speed += hero.walk_acceleration + hero.boost_speed;
       
