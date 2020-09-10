@@ -329,7 +329,10 @@ var move_hero = function(){
             location.href = '404.html'
           }
           if (is_buff(hero.x + hero.L4[0] + j * hero.right[0],hero.y + hero.L4[1] + j * hero.right[1])) {
-            hero.speed += 5
+            hero.speed += 1/3
+            hero.max_fall_speed += 1/3
+            hero.max_walk_speed += 1/3
+            maps[current_map].splice([Math.floor(y / tile_h)],1,maps[current_map][Math.floor(y / tile_h)].substring(0,Math.floor(x / tile_w)) + "1" + maps[current_map][Math.floor(y / tile_h)].substring(Math.floor(x / tile_w)+1))
           }
           hero.fall_speed = 0;
           hero.x -= hero.bottom[0];

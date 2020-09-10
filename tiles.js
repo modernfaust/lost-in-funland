@@ -22,7 +22,7 @@ tiles = {
     nextTiles : {
       "0": 6,
       "1": 0,
-      "2": 4,
+      "2": 3,
       "3": 0,
       "4": 0,
       "5": 0
@@ -42,7 +42,7 @@ tiles = {
       "2": 0,
       "3": 3,
       "4": 1,
-      "5": 0
+      "5": 1
     }
   },
   
@@ -58,11 +58,11 @@ tiles = {
     },
     nextTiles : {
       "0": 0,
-      "1": 10,
+      "1": 8,
       "2": 0,
       "3": 0,
       "4": 0,
-      "5": 0
+      "5": 2
 
     }
   },
@@ -124,8 +124,8 @@ tiles = {
       "1": 4,
       "2": 0,
       "3": 3,
-      "4": 3,
-      "5": 0
+      "4": 0,
+      "5": 3
 
     }
   },
@@ -179,7 +179,6 @@ is_spike = function(x,y){
 is_buff = function(x,y){
   var tile_y = Math.floor(y / tile_h);
   var tile_x = Math.floor(x / tile_w); 
-  
   return tiles[maps[current_map][tile_y][tile_x]].isBuff
 }
 
