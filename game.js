@@ -7,7 +7,6 @@ var time = 0;
 var frametime = 0;
 var normal_frametime = 16;
 var frametime_coef = 0;
-var map_updateCounter = 0;
 var generatedRow = "1"
 var gameScore = 0;
 var bgimg = document.getElementById("background");
@@ -26,7 +25,6 @@ game = function(){
   prev_time = time;
   frametime_coef = frametime / normal_frametime;
   l3.value = frametime_coef;
-  map_updateCounter++
   xAxis.value = hero.x
   yAxis.value = hero.y
   //zzz+=1;
@@ -72,13 +70,14 @@ game = function(){
   }
   ctx.drawImage(hero_sprite, -12, -16, tile_w, tile_h);
   ctx.restore();
+  levelColor=Math.floor(hero.y/500);
   // Next frame
   requestAnimationFrame(game);
 };
 
 var crawlingGas = {
   size: 0,
-  speed: 4,
+  speed: 3,
   fill: "red",
   isCrawling: false
 }

@@ -337,7 +337,6 @@ var move_hero = function(){
           current_map=1
           hero.max_fall_speed+= 1/3
           hero.max_walk_speed+= 1/3
-          levelColor+=25
           crawlingGas.isCrawling=true
         }
       }
