@@ -155,30 +155,32 @@ var rotate_hero = function(angle_deg){
 
 // Hero moves (left / right / jump / fall)
 var move_hero = function(){
-    
+  
+
+
   // Walk left:
-  if(keys.left && !keys.right){
+  if(keys.left && !keys.right) {
     // Apply a negative walk acceleration to the hero's speed
     hero.walk_speed -= hero.walk_acceleration + hero.boost_speed;
     
-    // Limit the hero's speed
-    if(hero.walk_speed < -hero.max_walk_speed - hero.boost_speed){
-      hero.walk_speed = -hero.max_walk_speed - hero.boost_speed;
+      // Limit the hero's speed
+      if(hero.walk_speed < -hero.max_walk_speed - hero.boost_speed){
+        hero.walk_speed = -hero.max_walk_speed - hero.boost_speed;
+      }
     }
-  }
-  
-  // Walk right:
-  else if(keys.right && !keys.left){
+
+    else if(keys.right && !keys.left){
     
-    // Apply a negative walk acceleration to the hero's speed
-    hero.walk_speed += hero.walk_acceleration + hero.boost_speed;
-    
-    // Limit the hero's speed
-    if(hero.walk_speed > hero.max_walk_speed + hero.boost_speed ){
-      hero.walk_speed = hero.max_walk_speed + hero.boost_speed;
+      // Apply a negative walk acceleration to the hero's speed
+      hero.walk_speed += hero.walk_acceleration + hero.boost_speed;
+      
+      // Limit the hero's speed
+      if(hero.walk_speed > hero.max_walk_speed + hero.boost_speed ){
+        hero.walk_speed = hero.max_walk_speed + hero.boost_speed;
+      }
     }
-  }
   
+
   // Idle:
   
   else{
