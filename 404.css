@@ -18,6 +18,14 @@ canvas {
     font-size: 100px;
 }
 
+#myscore {
+    bottom: 72%;
+    left: 50%;
+    color: #0F0;
+    position: absolute;
+    text-align: center;
+}
+
 .text-center {
     text-align: center!important;
 }

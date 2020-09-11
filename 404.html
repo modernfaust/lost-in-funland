@@ -1,11 +1,21 @@
 <html>
 <link rel="stylesheet" href="404.css">
 <script src="game.js"></script>
+<script>
+
+    var gameFinalScore = document.getElementById("myscore");
+    var finalScoreCount = gameFinalScore.getAttribute("data-text");
+    gameFinalScore.setAttribute("data-text", score);
+
+
+</script>
 
 <body style="margin:0;" onload="onLoad();";>
     <div id="content">
         <canvas id="canvas"></canvas>
+        <div class="error mx-auto" id="myscore" data-text="2" >
         <p class="error mx-auto" id="writer" data-text="404"></p>
+        </div>
     </div>
 </body>
 </html>
