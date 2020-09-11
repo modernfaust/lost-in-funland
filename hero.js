@@ -119,7 +119,7 @@ var hero = {
   max_walk_speed: 2,
   walk_acceleration: 1,
   walk_idle_deceleration: -1,
-  jump_speed: -12,
+  jump_speed: -15,
   gravity: 0.5,
   // Variable
   boost_speed: 0,
@@ -304,10 +304,10 @@ var move_hero = function(){
   }
   
   // Freefall:
-  hero.fall_speed += hero.gravity + hero.boost_speed;
+  hero.fall_speed += hero.gravity;
   
   if(hero.fall_speed > hero.max_fall_speed){
-    hero.fall_speed = hero.max_fall_speed + hero.boost_speed;
+    hero.fall_speed = hero.max_fall_speed;
   }
   
   l1.value = hero.fall_speed;
@@ -327,9 +327,10 @@ var move_hero = function(){
             location.href = '404.html'
           }
           if (is_buff(x,y)) {
-            hero.speed += 1/3
-            hero.max_fall_speed += 1/3
-            hero.max_walk_speed += 1/3
+            if (hero.boost_speed <= 10) {
+              hero.boost_speed+= 1
+            }
+            gameScore+=150
             maps[current_map].splice([Math.floor(y / tile_h)],1,maps[current_map][Math.floor(y / tile_h)].substring(0,Math.floor(x / tile_w)) + "1" + maps[current_map][Math.floor(y / tile_h)].substring(Math.floor(x / tile_w)+1))
           }
           hero.fall_speed = 0;
@@ -341,16 +342,18 @@ var move_hero = function(){
         }
         else if (is_trigger(x,y)){
           maps[current_map].pop()
-          crawlingGas.speed+=1
           maps[1]=maps[1].concat(generateLevel(100)).splice(1)
           current_map=1
-          hero.max_fall_speed+= 1/3
-          hero.max_walk_speed+= 1/3
+          crawlingGas.speed+= 1/10
+          hero.fall_speed+=1/3
+          hero.max_fall_speed +=1/3
+          hero.jump_speed +=1/3
+          hero.walk_speed +=1/3
           crawlingGas.isCrawling=true
         }
       }
     }
-    
+
     // Detect collision on the top (L1,C1,R1)
     else if(
       (hero.fall_speed < 0 && 
