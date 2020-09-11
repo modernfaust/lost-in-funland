@@ -88,13 +88,7 @@ crawl = function () {
   ctx.fillStyle=crawlingGas.fill
   ctx.drawImage(fog,0,0,tile_w*maps[0][0].length,crawlingGas.size)
 
-
-/*   ctx.fillRect(0,0,tile_w*maps[0][0].length,crawlingGas.size)
- */ /*   if (crawlingGas.size >= hero.y - 13*tile_h && crawlingGas.size < hero.y) {
-    crawlingGas.speed /= 2
-    console.log("this happened")
-  }  */
-  if (crawlingGas.size >= hero.y) {
+  if (crawlingGas.size >= hero.y + hero.L4[1] + tile_h) {
     ctx.clearRect(0,0,5000,5000)
     location.href="404.html"
   }
