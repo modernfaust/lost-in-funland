@@ -16,6 +16,8 @@ var gameStart=false
 var levelColor=0
 const clamp = (n, lo, hi) => n < lo ? lo : n > hi ? hi : n;
 var isPause = false;
+var currScore = 1;
+
 
 game = function(){
   if (!isPause) {
@@ -58,7 +60,11 @@ game = function(){
     crawl()
     gameScore++
     score.value = Math.floor(gameScore/10);
+    document.getElementById("finalScore").innerHTML = score.value;
+
   }
+
+
 
   // Draw the hero
   ctx.save();
@@ -73,6 +79,8 @@ game = function(){
 // Next frame 
     requestAnimationFrame(game);
 }
+
+
 };
 
 var crawlingGas = {
@@ -93,6 +101,8 @@ crawl = function () {
     ctx.clearRect(0,0,5000,5000)
     location.href="404.html"
   }
+
+  
 }
 
 function matrix(q) { // Function for matrix Effect
@@ -135,6 +145,7 @@ function typewriter() {
       setTimeout(typewriter, speed);
   }
 }
+
 
 function onLoad() { // Function to load canvas function
   var canvas = document.getElementById("canvas"); // Define canvas to grab from html
