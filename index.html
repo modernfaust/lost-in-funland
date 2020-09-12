@@ -29,8 +29,8 @@ input { height: 30px; width: 200px; margin: 10px; text-align: center;}
 }
 
 .modal-contents {
-	height: 150px;
-	width: 500px;
+	height: 175px;
+	width: 300px;
 	background-color: rgba(0, 69, 0, 0.9);
 	text-align: center;
 	padding: 20px;
@@ -44,14 +44,20 @@ input { height: 30px; width: 200px; margin: 10px; text-align: center;}
 	top: 0;
 	right: 10px;
 	font-size: 42px;
-	color: #333;
+	color: rgb(0, 255, 13);
 	transform: rotate(45deg);
 	cursor: pointer;
-	}
-
-  #finalScore {
-
   }
+  
+  #resetbtn {
+    margin: 10px;
+    border-color: black;
+    border-width: 2rem;
+    border-radius: 2em;
+    color: rgb(3, 218, 3);
+    background-color: rgb(7, 117, 7);
+  }
+
 
 </style>
 <title>Lost in Funland</title>
@@ -72,7 +78,7 @@ input { height: 30px; width: 200px; margin: 10px; text-align: center;}
         <p id=finalScore></p>
       </h1>
     </p>
-    <button onclick="location=location">reset</button>
+    <button id="resetbtn" onclick="location=location">reset</button>
 
   </div>
   
