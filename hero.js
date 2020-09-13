@@ -329,6 +329,8 @@ var move_hero = function(){
           if (is_buff(x,y)) {
             if (hero.boost_speed <= 10) {
               hero.boost_speed+= 1
+              var x = document.getElementById("heading");
+              x.querySelector(".buffpoint").innerHTML = "+15";
             }
             gameScore+=150
             //convert tile beneath to floor

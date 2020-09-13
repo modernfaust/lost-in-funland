@@ -4,7 +4,7 @@
 * { margin: 0; padding: 0; border: 0; box-sizing: border-box; overflow: hidden }
 body { background: #222; text-align: center; }
 img.preload { position: absolute; opacity: 0; left: -9999px; }
-canvas { width: 60vh; height: 80vh; cursor: crosshair;  position:absolute; left:300px; top:50px;}
+canvas { width: 60vh; height: 80vh; cursor: crosshair;}
 button { width: 100px; height: 40px }
 input { height: 30px; width: 200px; margin: 10px; text-align: center;}
 
@@ -86,13 +86,15 @@ input { height: 30px; width: 200px; margin: 10px; text-align: center;}
   <input id=l2 hidden>
   <input id=l3 hidden>
 
+  <div id= "heading">
   <span style="color: rgb(250, 0, 0); margin: 2px;"> Score </span>
   <input id=score>
+  <span style="color: rgb(250, 0, 0); margin: 2px;" class="buffpoint" ></span>
   <span style="color: rgb(250, 0, 0); margin: 2px;"></span>
   <input id=xAxis hidden>
   <span style="color: rgb(250, 0, 0); margin: 2px;"></span>
   <input id=yAxis hidden>
-
+  </div>
 
   <a href="404.html" hidden><button>404</button></a>
   
