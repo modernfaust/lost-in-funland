@@ -287,10 +287,11 @@ var move_hero = function(){
           if (is_buff(x,y)) {
             if (hero.boost_speed <= 10) {
               hero.boost_speed+= 1
-              var pointSpan = document.createElement("span");
+              var pointSpan = document.createElement("div");
               pointSpan.innerHTML = "50";
               pointSpan.setAttribute("style", "color: #4F4;");
-              pointSpan.classList.add("moveFade")
+              pointSpan.setAttribute("id", "box3");
+              pointSpan.classList.add("moveFade");
               document.getElementById("heading").appendChild(pointSpan);
               setTimeout ( function() {pointSpan.remove()} , 1000 );
             }

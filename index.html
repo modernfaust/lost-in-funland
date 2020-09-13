@@ -30,15 +30,41 @@ input { height: 30px; width: 200px; margin: 10px; text-align: center;}
 .moveFade {
   position: relative;
   animation-name: moveUp;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
 }
 
 @keyframes moveUp {
-  0% {left: 0px; opacity: 1;}
-  50% {left: 15px; opacity: 0.5;}
-  100% {left: 30px; opacity: 0;}
+  0% {right: 0px; opacity: 1;}
+  25% {right: 50px; opacity: 0.75;}
+  50% {right: 100px; opacity: 0.5;}
+  75% {right: 150px; opacity: 0.25;}
+  100% {right: 200px; opacity: 0;}
  
 }
+
+#heading {
+  margin: 10px;
+  width: 100%;
+}
+
+#box1 {
+  margin-top: 10px;
+  width: 33%;
+  float: left;
+  font-size: 30px;
+}
+
+#box2 {
+  width: 33%;
+  float: left;
+}
+
+#box3 {
+  margin-top: 15px;
+  width: 33%;
+  float: right;
+}
+
 
 </style>
 <title>Lost in Funland</title>
@@ -48,9 +74,12 @@ input { height: 30px; width: 200px; margin: 10px; text-align: center;}
   <input id=l2 hidden>
   <input id=l3 hidden>
 
-  <div id= "heading">
-  <span style="color: #4F4; margin: 2px;"> Score </span>
-  <input style="background-color: black; color: #4F4;" id="score">
+  <div id="heading" style="font-size: 30px;">
+
+    <div id="box1" style="color: #4F4;"> Score </div>
+
+    <div id="box2" ><input style="background-color: black; color: #4F4; font-size: 30px;" id="score"></div>
+
   </div>
   
   <div id=stage>
