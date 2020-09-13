@@ -172,6 +172,10 @@ var move_hero = function(){
       if(hero.walk_speed < -hero.max_walk_speed - hero.boost_speed){
         hero.walk_speed = -hero.max_walk_speed - hero.boost_speed;
       }
+        
+    if (keys.down) {
+      hero.walk_speed=-1
+    }
     }
 
     else if(keys.right && !keys.left){
@@ -182,6 +186,9 @@ var move_hero = function(){
       // Limit the hero's speed
       if(hero.walk_speed > hero.max_walk_speed + hero.boost_speed ){
         hero.walk_speed = hero.max_walk_speed + hero.boost_speed;
+      }
+      if (keys.down) {
+        hero.walk_speed=1
       }
     }
   
@@ -302,7 +309,7 @@ var move_hero = function(){
     hero.freefall = true;
     hero.fall_speed += hero.jump_speed;
   }
-  
+
   // Freefall:
   hero.fall_speed += hero.gravity;
   
@@ -329,8 +336,8 @@ var move_hero = function(){
           if (is_buff(x,y)) {
             if (hero.boost_speed <= 10) {
               hero.boost_speed+= 1
-              var x = document.getElementById("heading");
-              x.querySelector(".buffpoint").innerHTML = "+15";
+              var h = document.getElementById("heading");
+              h.querySelector(".buffpoint").innerHTML = "+15";
             }
             gameScore+=150
             //convert tile beneath to floor

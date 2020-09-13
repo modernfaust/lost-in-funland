@@ -99,8 +99,9 @@ input { height: 30px; width: 200px; margin: 10px; text-align: center;}
   <a href="404.html" hidden><button>404</button></a>
   
   <div id=stage>
-  <canvas id=canvas width=640 height=800 z-index: -1></canvas>
-  <img class=preload src="img/hero.png" id=hero_sprite>
+  <canvas id=canvas width=640 height=800 z-index: 1></canvas>
+<!--   <canvas id=ctrl_canv width=640 height=800 z-index: 2></canvas>
+ -->  <img class=preload src="img/hero.png" id=hero_sprite>
   <img class=preload src="img/platform_2.png" id=wall_unportalable_sprite>
   <img class=preload src="img/wall_portalable.png" id=wall_portalable_sprite>
   <img class=preload src="img/void.png" id=void_sprite>
@@ -110,6 +111,11 @@ input { height: 30px; width: 200px; margin: 10px; text-align: center;}
   <img class=preload src="img/Buff.png" id=buff>
   <img class=preload src="img/void.png" id=trigger>
   <img class=preload src="img/Fog.png" id=fog>
+
+  <img class=preload src="img/up.png" id=up>
+  <img class=preload src="img/down.png" id=down>
+  <img class=preload src="img/left.png" id=left>
+  <img class=preload src="img/right.png" id=right>
 
   </div>
   <script>

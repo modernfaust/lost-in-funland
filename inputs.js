@@ -5,7 +5,8 @@ keys = {
   left: false,
   up: false,
   top: false,
-  pause: false
+  pause: false,
+  down: false
 };
 
 
@@ -21,9 +22,13 @@ onkeydown = onkeypress = function(e){
     case 39:
       keys.right = true;
       break;
+    case 40:
+      keys.down = true;
+      break;
     case 80:
       keys.pause = true;
       break;
+
   }
 };
 
@@ -38,6 +43,9 @@ onkeyup = function(e){
       break;
     case 39:
       keys.right = false;
+      break;
+    case 40:
+      keys.down = false;
       break;
     case 80:
       keys.pause = false;

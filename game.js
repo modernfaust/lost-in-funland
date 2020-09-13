@@ -30,6 +30,7 @@ game = function(){
     hero.boost_speed*=1/3
   } 
 
+
   //center camera around hero
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -60,6 +61,7 @@ game = function(){
 
   }
 
+  showInstructions()
   // Draw the hero
   ctx.save();
   ctx.translate(hero.x, hero.y);
@@ -141,6 +143,18 @@ function onLoad() { // Function to load canvas function
       window.location.href = 'index.html';
   }, 7000);
   
+}
+
+showInstructions = function () {
+  ctx.fillStyle="green"
+  ctx.font = "bold 30px Georgia";
+  ctx.fillText("GO", 325,55)
+  ctx.fillText("MOVE", 325, 500)
+  ctx.fillText("AND DON'T LOOK BACK", 325, 800)
+  ctx.drawImage(right,150,25,50,35)  
+  ctx.drawImage(down,375,600,50,35)  
+  ctx.drawImage(left,150,500,50,35)  
+  ctx.drawImage(right,600,500,50,35)  
 }
 
 onload = function(){
