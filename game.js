@@ -47,7 +47,7 @@ game = function(){
   if (crawlingGas.isCrawling) {
     crawl()
     score.value = Math.floor(hero.y+gameScore/10);
-    document.getElementById("finalScore").innerHTML = score.value;
+    document.getElementById("score").innerHTML = score.value;
   }
 
   showInstructions()

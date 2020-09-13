@@ -2,42 +2,11 @@
 <meta charset=utf-8>
 <style>
 * { margin: 0; padding: 0; border: 0; box-sizing: border-box; overflow: hidden }
-body { background: #222; text-align: center; }
+body { background: black; text-align: center; }
 img.preload { position: absolute; opacity: 0; left: -9999px; }
 canvas { width: 60vh; height: 80vh; cursor: crosshair;}
 button { width: 100px; height: 40px }
 input { height: 30px; width: 200px; margin: 10px; text-align: center;}
-
-/* Phone Size Support */
-
-@media (min-width: 1000px) and (min-height: 700px) {
-    .canvas {
-        width: 450px;
-        height: 300px;
-    }
-}
-
-.bg-modal {
-	background-color: rgba(0, 0, 0, 0.8);
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0;
-	display: none;
-	justify-content: center;
-	align-items: center;
-}
-
-.modal-contents {
-	height: 175px;
-	width: 300px;
-	background-color: rgba(0, 69, 0, 0.9);
-	text-align: center;
-	padding: 20px;
-	position: relative;
-	border-radius: 4px;
-}
-
 
 .close {
 	position: absolute;
@@ -75,49 +44,20 @@ input { height: 30px; width: 200px; margin: 10px; text-align: center;}
 <title>Lost in Funland</title>
 <body id=body>
 
-
-<!-- Trigger/Open The Modal -->
-<button id="endGameBtn" hidden>Open Modal</button>
-
-<div class="bg-modal">
-	<div class="modal-contents">
-
-    <div class="close">+</div>
-    
-    <p>
-      <h1>
-        <p>SCORE</p>
-        <p id=finalScore></p>
-      </h1>
-    </p>
-    <button id="resetbtn" onclick="location=location">reset</button>
-  </div>
-</div>
-
-<button id="fadeBtn" hidden></button>
-
   <input id=l1 hidden>
   <input id=l2 hidden>
   <input id=l3 hidden>
 
   <div id= "heading">
   <span style="color: #4F4; margin: 2px;"> Score </span>
-  <input id=score>
-  
-  <span style="color: rgb(250, 0, 0); margin: 2px;"></span>
-  <input id=xAxis hidden>
-  <span style="color: rgb(250, 0, 0); margin: 2px;"></span>
-  <input id=yAxis hidden>
+  <input style="background-color: black; color: #4F4;" id="score">
   </div>
-
-  <a href="404.html" hidden><button>404</button></a>
   
   <div id=stage>
   <canvas id=canvas width=640 height=800 z-index: 1></canvas>
 <!--   <canvas id=ctrl_canv width=640 height=800 z-index: 2></canvas>
  -->  <img class=preload src="img/hero.png" id=hero_sprite>
   <img class=preload src="img/platform_2.png" id=wall_unportalable_sprite>
-  <img class=preload src="img/wall_portalable.png" id=wall_portalable_sprite>
   <img class=preload src="img/void.png" id=void_sprite>
   <img class=preload src="img/slope.png" id=slope_45deg_left>
   <img class=preload src="img/Slope_fliped.png" id=slope_45deg_right>
@@ -125,24 +65,13 @@ input { height: 30px; width: 200px; margin: 10px; text-align: center;}
   <img class=preload src="img/Buff.png" id=buff>
   <img class=preload src="img/void.png" id=trigger>
   <img class=preload src="img/Fog.png" id=fog>
-
   <img class=preload src="img/up.png" id=up>
   <img class=preload src="img/down.png" id=down>
   <img class=preload src="img/left.png" id=left>
   <img class=preload src="img/right.png" id=right>
 
   </div>
-  <script>
-    document.getElementById('endGameBtn').addEventListener("click", function() {
-    document.querySelector('.bg-modal').style.display = "flex";
-  });
-  
-    document.querySelector('.close').addEventListener("click", function() {
-      document.querySelector('.bg-modal').style.display = "none";
-      requestAnimationFrame(game);
-      isPause = false;
-  });
-    </script>
+
   <script src=canvas.js></script>
   <script src=tiles.js></script>
   <script src=maps.js></script>
