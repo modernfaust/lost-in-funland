@@ -4,7 +4,7 @@
 * { margin: 0; padding: 0; border: 0; box-sizing: border-box; overflow: hidden }
 body { background: #222; text-align: center; }
 img.preload { position: absolute; opacity: 0; left: -9999px; }
-canvas { width: 60vh; height: 80vh;  background-color: black; cursor: crosshair; }
+canvas { width: 60vh; height: 80vh; cursor: crosshair;  position:absolute; left:50px; top:50px;}
 button { width: 100px; height: 40px }
 input { height: 30px; width: 200px; margin: 10px; text-align: center;}
 
@@ -49,14 +49,14 @@ input { height: 30px; width: 200px; margin: 10px; text-align: center;}
 	cursor: pointer;
   }
   
-  #resetbtn {
-    margin: 10px;
-    border-color: black;
-    border-width: 2rem;
-    border-radius: 2em;
-    color: rgb(3, 218, 3);
-    background-color: rgb(7, 117, 7);
-  }
+#resetbtn {
+  margin: 10px;
+  border-color: black;
+  border-width: 2rem;
+  border-radius: 2em;
+  color: rgb(3, 218, 3);
+  background-color: rgb(7, 117, 7);
+}
 
 
 </style>
@@ -99,8 +99,9 @@ input { height: 30px; width: 200px; margin: 10px; text-align: center;}
 
   <a href="404.html" hidden><button>404</button></a>
   
-  <div>
-  <canvas id=canvas width=640 height=800></canvas>
+  <div id=stage>
+  <canvas id=canvas width=640 height=800 z-index: 2></canvas>
+  <canvas id=animCanvas width=640 height=800 z-index: 1></canvas>
   <img class=preload src="img/hero.png" id=hero_sprite>
   <img class=preload src="img/platform_2.png" id=wall_unportalable_sprite>
   <img class=preload src="img/wall_portalable.png" id=wall_portalable_sprite>

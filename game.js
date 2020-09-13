@@ -1,6 +1,3 @@
-/* Game loop */
-
-
 // Constants
 var prev_time = +new Date();
 var time = 0;
@@ -9,7 +6,6 @@ var normal_frametime = 16;
 var frametime_coef = 0;
 var generatedRow = "1"
 var gameScore = 0;
-var bgimg = document.getElementById("background");
 var prevTile;
 var maxFloor=50
 var gameStart=false
@@ -37,7 +33,9 @@ game = function(){
   //center camera around hero
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  const camX = -hero.x + canvas.width /2;
+  anim_ctx.setTransform(1, 0, 0, 1, 0, 0);
+/*   anim_ctx.clearRect(0, 0, canvas.width, canvas.height);
+ */  const camX = -hero.x + canvas.width /2;
   const camY = -hero.y + canvas.height / 2;
   ctx.fillStyle = "rgb("+levelColor+"," + 0 + "," + 0 + ")";
   ctx.fillRect(0,0,canvas.width,2000); 
@@ -45,7 +43,8 @@ game = function(){
   x=clamp(camX,canvas.width - 800,0)
   y=clamp(camY,canvas.height-50*maps[current_map].length* tile_h,0)
   ctx.translate(x,y);
-  
+  anim_ctx.translate(x,y);
+
   // Make the hero move, walk, jump, fall...
   move_hero();
   for(i=Math.floor((hero.y - 15*tile_h)/tile_h); i <= maps[current_map].length; i++){
@@ -64,8 +63,6 @@ game = function(){
 
   }
 
-
-
   // Draw the hero
   ctx.save();
   ctx.translate(hero.x, hero.y);
@@ -78,9 +75,7 @@ game = function(){
   levelColor=Math.floor(hero.y/500);
 // Next frame 
     requestAnimationFrame(game);
-}
-
-
+  }
 };
 
 var crawlingGas = {
@@ -101,13 +96,9 @@ crawl = function () {
     ctx.clearRect(0,0,5000,5000)
     location.href="404.html"
   }
-
-  
 }
 
 function matrix(q) { // Function for matrix Effect
-        
-
   // Define variables
   var s = window.screen; // The window
   var width = q.width = s.width; // Width of window
@@ -119,9 +110,7 @@ function matrix(q) { // Function for matrix Effect
       q.getContext('2d').fillStyle='rgba(0,0,0,.05)'; // Draw Black background with transparacy
       q.getContext('2d').fillRect(0,0,width,height); // Fill the whole screen
       q.getContext('2d').fillStyle='#0F0'; // Add Green Color
-
       letters.map( //Map function for Array
-
           function(y_pos, index) {
 
               text = String.fromCharCode(3e4+Math.random()*33); // Create random number for Char of matrix

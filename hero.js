@@ -329,6 +329,7 @@ var move_hero = function(){
           if (is_buff(x,y)) {
             if (hero.boost_speed <= 10) {
               hero.boost_speed+= 1
+              setInterval(collectPoints(x,y), 1000)
             }
             gameScore+=150
             maps[current_map].splice([Math.floor(y / tile_h)],1,maps[current_map][Math.floor(y / tile_h)].substring(0,Math.floor(x / tile_w)) + "1" + maps[current_map][Math.floor(y / tile_h)].substring(Math.floor(x / tile_w)+1))
@@ -338,7 +339,6 @@ var move_hero = function(){
           hero.y -= hero.bottom[1];
           hero.freefall = false;
           break mv;
-
         }
         else if (is_trigger(x,y)){
           maps[current_map].pop()
