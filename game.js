@@ -7,10 +7,8 @@ var frametime_coef = 0;
 var generatedRow = "1"
 var gameScore = 0;
 var prevTile;
-var gameStart=false
 var levelColor=0
 const clamp = (n, lo, hi) => n < lo ? lo : n > hi ? hi : n;
-var isPause = false;
 
 game = function(){
   // Handle framerate
@@ -20,8 +18,8 @@ game = function(){
   frametime_coef = frametime / normal_frametime;
   l3.value = frametime_coef;
 
-  if (gameScore%240 === 0) {
-    hero.boost_speed*=1/3
+  if ((hero.y+gameScore)%240 === 0) {
+    hero.boost_speed*=1/2
   } 
 
   //center camera around hero

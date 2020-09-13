@@ -287,15 +287,15 @@ var move_hero = function(){
           if (is_buff(x,y)) {
             if (hero.boost_speed <= 10) {
               hero.boost_speed+= 1
-              var pointSpan = document.createElement("span");
-              pointSpan.innerHTML = "50";
-              pointSpan.setAttribute("style", "color: #4F4;");
-              pointSpan.setAttribute("id", "box3");
-              pointSpan.classList.add("moveFade");
-              document.getElementById("heading").appendChild(pointSpan);
-              setTimeout ( function() {pointSpan.remove()} , 1000 );
             }
             gameScore+=500
+            var pointSpan = document.createElement("span");
+            pointSpan.innerHTML = "50";
+            pointSpan.setAttribute("style", "color: #4F4;");
+            pointSpan.setAttribute("id", "box3");
+            pointSpan.classList.add("moveFade");
+            document.getElementById("heading").appendChild(pointSpan);
+            setTimeout ( function() {pointSpan.remove()} , 1000 );
             //convert tile beneath to floor
             maps[current_map].splice([Math.floor(y / tile_h)],1,maps[current_map][Math.floor(y / tile_h)].substring(0,Math.floor(x / tile_w)) + "1" + maps[current_map][Math.floor(y / tile_h)].substring(Math.floor(x / tile_w)+1))
           }
