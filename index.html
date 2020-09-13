@@ -58,6 +58,16 @@ input { height: 30px; width: 200px; margin: 10px; text-align: center;}
   background-color: rgb(7, 117, 7);
 }
 
+#fadeSource {
+  opacity: 1;
+  transition: opacity 1s; 
+}
+
+#fadeSource.fade {
+  opacity: 0;
+}
+
+
 
 </style>
 <title>Lost in Funland</title>
@@ -82,6 +92,8 @@ input { height: 30px; width: 200px; margin: 10px; text-align: center;}
   </div>
 </div>
 
+<button id="fadeBtn" hidden></button>
+
   <input id=l1 hidden>
   <input id=l2 hidden>
   <input id=l3 hidden>
@@ -89,7 +101,7 @@ input { height: 30px; width: 200px; margin: 10px; text-align: center;}
   <div id= "heading">
   <span style="color: rgb(250, 0, 0); margin: 2px;"> Score </span>
   <input id=score>
-  <span style="color: rgb(250, 0, 0); margin: 2px;" class="buffpoint" ></span>
+  <div style="color: rgb(250, 0, 0); margin: 2px;" id="fadeSource" > +15 </div>
   <span style="color: rgb(250, 0, 0); margin: 2px;"></span>
   <input id=xAxis hidden>
   <span style="color: rgb(250, 0, 0); margin: 2px;"></span>

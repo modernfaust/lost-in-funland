@@ -303,6 +303,10 @@ var move_hero = function(){
     }
   }
 
+  var slideSource = document.getElementById('fadeSource');
+  document.getElementById('fadeBtn').onclick = function () {
+    slideSource.classList.toggle('fade');
+  }
 
   // Jump:
   if(keys.up && !hero.freefall){
@@ -335,9 +339,11 @@ var move_hero = function(){
           }
           if (is_buff(x,y)) {
             if (hero.boost_speed <= 10) {
-              hero.boost_speed+= 1
-              var h = document.getElementById("heading");
-              h.querySelector(".buffpoint").innerHTML = "+15";
+              hero.boost_speed+= 1;
+              fadeClick();
+              //setInterval(fadeClick(), 2000);
+              
+
             }
             gameScore+=150
             //convert tile beneath to floor
@@ -381,4 +387,8 @@ var move_hero = function(){
       break;
     }
   }
+}
+
+function fadeClick() {
+  document.getElementById("fadeBtn").click();
 }

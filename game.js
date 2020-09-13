@@ -148,10 +148,10 @@ function onLoad() { // Function to load canvas function
 showInstructions = function () {
   ctx.fillStyle="green"
   ctx.font = "bold 30px Georgia";
-  ctx.fillText("GO", 325,55)
-  ctx.fillText("MOVE", 325, 500)
-  ctx.fillText("AND DON'T LOOK BACK", 325, 800)
-  ctx.drawImage(right,150,25,50,35)  
+  ctx.fillText("GO", 300,55)
+  ctx.fillText("MOVE", 350, 525)
+  ctx.fillText("AND DON'T LOOK BACK", 215, 750)
+  ctx.drawImage(right,200,25,50,35)  
   ctx.drawImage(down,375,600,50,35)  
   ctx.drawImage(left,150,500,50,35)  
   ctx.drawImage(right,600,500,50,35)  
@@ -162,4 +162,5 @@ onload = function(){
   rotate_hero(zzz);
   //if true game runs
   game(); 
+  document.getElementById("fadeBtn").click();
 }
