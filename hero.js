@@ -303,10 +303,6 @@ var move_hero = function(){
     }
   }
 
-  var slideSource = document.getElementById('fadeSource');
-  document.getElementById('fadeBtn').onclick = function () {
-    slideSource.classList.toggle('fade');
-  }
 
   // Jump:
   if(keys.up && !hero.freefall){
@@ -339,11 +335,13 @@ var move_hero = function(){
           }
           if (is_buff(x,y)) {
             if (hero.boost_speed <= 10) {
-              hero.boost_speed+= 1;
-              fadeClick();
-              //setInterval(fadeClick(), 2000);
-              
-
+              hero.boost_speed+= 1
+              var pointSpan = document.createElement("span");
+              pointSpan.innerHTML = "15";
+              pointSpan.setAttribute("style", "color: #4F4;");
+              pointSpan.classList.add("moveFade")
+              document.getElementById("heading").appendChild(pointSpan);
+              setTimeout ( function() {pointSpan.remove()} , 1000 );
             }
             gameScore+=150
             //convert tile beneath to floor
@@ -387,8 +385,4 @@ var move_hero = function(){
       break;
     }
   }
-}
-
-function fadeClick() {
-  document.getElementById("fadeBtn").click();
 }

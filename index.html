@@ -58,14 +58,19 @@ input { height: 30px; width: 200px; margin: 10px; text-align: center;}
   background-color: rgb(7, 117, 7);
 }
 
-#fadeSource {
-  opacity: 1;
-  transition: opacity 1s; 
+.moveFade {
+  position: relative;
+  animation-name: moveUp;
+  animation-duration: 1s;
 }
 
-#fadeSource.fade {
-  opacity: 0;
+@keyframes moveUp {
+  0% {left: 0px; opacity: 1;}
+  50% {left: 15px; opacity: 0.5;}
+  100% {left: 30px; opacity: 0;}
+ 
 }
+
 
 
 
@@ -99,9 +104,9 @@ input { height: 30px; width: 200px; margin: 10px; text-align: center;}
   <input id=l3 hidden>
 
   <div id= "heading">
-  <span style="color: rgb(250, 0, 0); margin: 2px;"> Score </span>
+  <span style="color: #4F4; margin: 2px;"> Score </span>
   <input id=score>
-  <div style="color: rgb(250, 0, 0); margin: 2px;" id="fadeSource" > +15 </div>
+  
   <span style="color: rgb(250, 0, 0); margin: 2px;"></span>
   <input id=xAxis hidden>
   <span style="color: rgb(250, 0, 0); margin: 2px;"></span>
