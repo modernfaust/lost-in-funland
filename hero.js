@@ -111,11 +111,6 @@ var rotate_hero = function(angle_deg){
 
 // Hero moves (left / right / jump / fall)
 var move_hero = function(){
-  
-  if(keys.pause) {
-    document.getElementById("endGameBtn").click();
-    isPause = true;
-  }
 
   // Walk left:
   if(keys.left && !keys.right) {

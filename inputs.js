@@ -25,10 +25,6 @@ onkeydown = onkeypress = function(e){
     case 40:
       keys.down = true;
       break;
-    case 80:
-      keys.pause = true;
-      break;
-
   }
 };
 
@@ -46,9 +42,6 @@ onkeyup = function(e){
       break;
     case 40:
       keys.down = false;
-      break;
-    case 80:
-      keys.pause = false;
       break;
   }
 };

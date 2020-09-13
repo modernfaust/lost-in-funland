@@ -13,7 +13,6 @@ const clamp = (n, lo, hi) => n < lo ? lo : n > hi ? hi : n;
 var isPause = false;
 
 game = function(){
-  if (!isPause) {
   // Handle framerate
   time = +new Date();
   frametime = time - prev_time;
@@ -64,8 +63,7 @@ game = function(){
   levelColor=Math.floor(hero.y/500);
 // Next frame 
     requestAnimationFrame(game);
-  }
-};
+  };
 
 var crawlingGas = {
   size: 0,
@@ -113,12 +111,11 @@ function matrix(q) { // Function for matrix Effect
 
 // define typewriter variables
 var i = 0;
-var txt = '404'
 var speed = 750;
 
 typewriter =  function() {
-  if (i < txt.length) {
-      document.getElementById("writer").innerHTML += txt.charAt(i);
+  if (i < '404'.length) {
+      document.getElementById("writer").innerHTML += '404'.charAt(i);
       i++;
       setTimeout(typewriter, speed);
   }
@@ -130,7 +127,7 @@ loadMatrix = function () { // Function to load canvas function
   matrix(canvas);
   typewriter();
   setTimeout(function(){
-      window.location.href = 'index.html';
+      location.href = 'index.html';
   }, 7000);
   
 }
