@@ -35,36 +35,12 @@ input { height: 30px; width: 200px; margin: 10px; text-align: center;}
 
 @keyframes moveUp {
   0% {right: 0px; opacity: 1;}
-  25% {right: 50px; opacity: 0.75;}
-  50% {right: 100px; opacity: 0.5;}
-  75% {right: 150px; opacity: 0.25;}
-  100% {right: 200px; opacity: 0;}
+  25% {right: 25px; opacity: 0.75;}
+  50% {right: 50px; opacity: 0.5;}
+  75% {right: 75px; opacity: 0.25;}
+  100% {right: 100px; opacity: 0;}
  
 }
-
-#heading {
-  margin: 10px;
-  width: 100%;
-}
-
-#box1 {
-  margin-top: 10px;
-  width: 33%;
-  float: left;
-  font-size: 30px;
-}
-
-#box2 {
-  width: 33%;
-  float: left;
-}
-
-#box3 {
-  margin-top: 15px;
-  width: 33%;
-  float: right;
-}
-
 
 </style>
 <title>Lost in Funland</title>
@@ -75,11 +51,8 @@ input { height: 30px; width: 200px; margin: 10px; text-align: center;}
   <input id=l3 hidden>
 
   <div id="heading" style="font-size: 30px;">
-
-    <div id="box1" style="color: #4F4;"> Score </div>
-
-    <div id="box2" ><input style="background-color: black; color: #4F4; font-size: 30px;" id="score"></div>
-
+    <span style="color: #4F4;"> Score </span>
+    <input style="background-color: black; color: #4F4; font-size: 30px;" id="score">
   </div>
   
   <div id=stage>
