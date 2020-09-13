@@ -116,7 +116,7 @@ var hero = {
 
   // Speeds and accelerations:
   // Constant
-  max_walk_speed: 2,
+  max_walk_speed: 3,
   walk_acceleration: 1,
   walk_idle_deceleration: -1,
   jump_speed: -15,
@@ -329,9 +329,9 @@ var move_hero = function(){
           if (is_buff(x,y)) {
             if (hero.boost_speed <= 10) {
               hero.boost_speed+= 1
-              setInterval(collectPoints(x,y), 1000)
             }
             gameScore+=150
+            //convert tile beneath to floor
             maps[current_map].splice([Math.floor(y / tile_h)],1,maps[current_map][Math.floor(y / tile_h)].substring(0,Math.floor(x / tile_w)) + "1" + maps[current_map][Math.floor(y / tile_h)].substring(Math.floor(x / tile_w)+1))
           }
           hero.fall_speed = 0;

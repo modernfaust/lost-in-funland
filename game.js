@@ -33,9 +33,7 @@ game = function(){
   //center camera around hero
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  anim_ctx.setTransform(1, 0, 0, 1, 0, 0);
-/*   anim_ctx.clearRect(0, 0, canvas.width, canvas.height);
- */  const camX = -hero.x + canvas.width /2;
+  const camX = -hero.x + canvas.width /2;
   const camY = -hero.y + canvas.height / 2;
   ctx.fillStyle = "rgb("+levelColor+"," + 0 + "," + 0 + ")";
   ctx.fillRect(0,0,canvas.width,2000); 
@@ -43,7 +41,6 @@ game = function(){
   x=clamp(camX,canvas.width - 800,0)
   y=clamp(camY,canvas.height-50*maps[current_map].length* tile_h,0)
   ctx.translate(x,y);
-  anim_ctx.translate(x,y);
 
   // Make the hero move, walk, jump, fall...
   move_hero();

@@ -182,13 +182,6 @@ is_buff = function(x,y){
   return tiles[maps[current_map][tile_y][tile_x]].isBuff
 }
 
-collectPoints = function(x,y) {
-  anim_ctx.font = "60px Arial";
-  anim_ctx.fillStyle = "green";
-  anim_ctx.fillText("+15",x+30,y-30)
-
-}
-
 is_badFloor = function (generatedRow){
   //test if floor is a "bad floor"
   //if there's a bad facing ramp
