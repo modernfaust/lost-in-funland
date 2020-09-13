@@ -7,13 +7,10 @@ var frametime_coef = 0;
 var generatedRow = "1"
 var gameScore = 0;
 var prevTile;
-var maxFloor=50
 var gameStart=false
 var levelColor=0
 const clamp = (n, lo, hi) => n < lo ? lo : n > hi ? hi : n;
 var isPause = false;
-var currScore = 1;
-
 
 game = function(){
   if (!isPause) {
@@ -23,13 +20,10 @@ game = function(){
   prev_time = time;
   frametime_coef = frametime / normal_frametime;
   l3.value = frametime_coef;
-  xAxis.value = hero.x
-  yAxis.value = hero.y
 
   if (gameScore%240 === 0) {
     hero.boost_speed*=1/3
   } 
-
 
   //center camera around hero
   ctx.setTransform(1, 0, 0, 1, 0, 0);
@@ -39,9 +33,7 @@ game = function(){
   ctx.fillStyle = "rgb("+levelColor+"," + 0 + "," + 0 + ")";
   ctx.fillRect(0,0,canvas.width,2000); 
   //clamp camera to map
-  x=clamp(camX,canvas.width - 800,0)
-  y=clamp(camY,canvas.height-50*maps[current_map].length* tile_h,0)
-  ctx.translate(x,y);
+  ctx.translate(clamp(camX,canvas.width - 800,0),clamp(camY,canvas.height-50*maps[current_map].length* tile_h,0));
 
   // Make the hero move, walk, jump, fall...
   move_hero();
@@ -55,10 +47,8 @@ game = function(){
 
   if (crawlingGas.isCrawling) {
     crawl()
-    gameScore++
-    score.value = Math.floor(gameScore/10);
+    score.value = Math.floor(hero.y+gameScore/10);
     document.getElementById("finalScore").innerHTML = score.value;
-
   }
 
   showInstructions()
@@ -126,7 +116,7 @@ var i = 0;
 var txt = '404'
 var speed = 750;
 
-function typewriter() {
+typewriter =  function() {
   if (i < txt.length) {
       document.getElementById("writer").innerHTML += txt.charAt(i);
       i++;
@@ -135,7 +125,7 @@ function typewriter() {
 }
 
 
-function onLoad() { // Function to load canvas function
+loadMatrix = function () { // Function to load canvas function
   var canvas = document.getElementById("canvas"); // Define canvas to grab from html
   matrix(canvas);
   typewriter();
@@ -162,5 +152,4 @@ onload = function(){
   rotate_hero(zzz);
   //if true game runs
   game(); 
-  document.getElementById("fadeBtn").click();
 }

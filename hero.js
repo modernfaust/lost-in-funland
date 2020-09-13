@@ -1,47 +1,3 @@
-/* Hero */
-
-/*
-* The hero is drawn as a 32 x 32 sprite, its hitbox is 22 x 28.
-* Its center point is at the center of its hitbox (x = 11; y = 14)
-* A few other points are placed around the hitbox to simplify the collision tests:
-* L1, C1, R1 (x = 0 / 11 / 21; y = 0)
-* L2, C2, R2 (x = 0 / 11 / 21; y = 14)
-* L3, R3 (x = 0 / 21; y = 20)
-* L4, L5, C3, R5, R4 (x = 0 / 4 / 11 / 16 / 21; y = 24)
-* 
-*               C1
-* L1 *-----------*-----------* R1
-*    |                       |
-*    |                       |
-*    |                       |
-*    |                       |
-*    |                       |
-*    |                       |
-*    |                       |
-*    |                       |
-*    |                       |
-*    |                       |
-*    |                       |
-*    |           C2          |
-* L2 *            *          * R2
-*    |    (hero.x; hero.y)   |
-*    |                       |
-*    |                       |
-*    |                       |
-*    |                       |
-*    |                       |
-*    |                       |
-*    |                       |
-* L3 *                       * R3
-*    |                       |
-*    |                       |
-*    |                       |
-*    |                       |
-* L4 *---*-------*-------*---* R4
-*       L5      C3       R5
-*
-*/
-
 // Constants
 var hero_w = 22;
 var hero_h = 28;
@@ -337,13 +293,13 @@ var move_hero = function(){
             if (hero.boost_speed <= 10) {
               hero.boost_speed+= 1
               var pointSpan = document.createElement("span");
-              pointSpan.innerHTML = "15";
+              pointSpan.innerHTML = "50";
               pointSpan.setAttribute("style", "color: #4F4;");
               pointSpan.classList.add("moveFade")
               document.getElementById("heading").appendChild(pointSpan);
               setTimeout ( function() {pointSpan.remove()} , 1000 );
             }
-            gameScore+=150
+            gameScore+=500
             //convert tile beneath to floor
             maps[current_map].splice([Math.floor(y / tile_h)],1,maps[current_map][Math.floor(y / tile_h)].substring(0,Math.floor(x / tile_w)) + "1" + maps[current_map][Math.floor(y / tile_h)].substring(Math.floor(x / tile_w)+1))
           }
